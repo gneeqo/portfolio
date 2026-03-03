@@ -172,20 +172,6 @@
       font-weight: bold;
     }
 
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 1rem;
-    }
-
-    .tag {
-      font-size: 0.75rem;
-      color: var(--fg-dim);
-      border: 1px solid var(--border-dim);
-      padding: 0.15rem 0.5rem;
-    }
-
     .steam-embed {
       margin-top: 1.25rem;
     }
@@ -211,6 +197,21 @@
       border: 0;
     }
 
+    .small-video-box {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      margin-top: 0.75rem;
+      background: #000;
+    }
+
+    .small-video-box iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+
     /* --- SMALL PROJECTS --- */
     .small-grid {
       display: grid;
@@ -223,7 +224,7 @@
     }
 
     .small-project {
-      border: 1px solid hello world this is the index.html var(--border-dim);
+      border: 1px solid var(--border-dim);
       background: var(--bg-soft);
       padding: 1.25rem;
       transition: border-color 0.15s;
@@ -340,19 +341,13 @@
 
   <header>
     <div class="name">Nico Toé</div>
-    <div class="tagline">game designer · gameplay programmer · seattle</div>
     <div class="header-links">
       <a href="https://www.linkedin.com/in/nico-toe">linkedin</a>
       <span class="sep">/</span>
       <a href="https://github.com/gneeqo">github</a>
       <span class="sep">/</span>
-      <a href="mailto:nico@nicodev.info">email</a>
+      <a href="mailto:nicolastoe@proton.me">email</a>
     </div>
-    <p class="intro">
-      I've shipped 4 games on Steam, led a 6-programmer team as Technical Director,
-      and built live telemetry infrastructure for a multiplayer arena shooter.
-      I make games that feel good to play.
-    </p>
   </header>
 
   <nav>
@@ -371,25 +366,15 @@
         <h3>Eidolon: Fate of Fools</h3>
         <span class="role">Designer · Programmer · Live Ops</span>
       </div>
-      <div class="project-meta">2024–2025 · Arena Shooter · Godot · 21-person team</div>
+      <div class="project-meta">2024–2025 · Arena Shooter · UE5 · 9-person team</div>
 
       <div class="video-box">
         <iframe src="https://www.youtube.com/embed/NdUt3TE0nxY?si=ewL2hJ3_8sTJwjnO" title="Eidolon: Fate of Fools" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
 
-      <p>A multiplayer arena shooter where combatants fight using Major Arcana tarot cards. Built to capture the chaos of old-school LAN parties.</p>
-      <p>I prototyped and iterated on core gameplay over a year, tuning combat feel through systematic playtesting. Built a <strong>live telemetry pipeline</strong> that captures player data and sends it to PostgreSQL for analysis. Integrated Steam platform features, including match invites and avatars.</p>
+      <p>A multiplayer arena shooter designed to emulate the chaotic camaraderie of old-school LAN parties.</p>
+      <p>I prototyped and iterated on core gameplay over a year, tuning combat feel through frequent playtesting. I built a live telemetry pipelinethat captures player data and sends it to PostgreSQL for analysis. I Integrated Steam platform features, including match invites and avatars.</p>
       <p><em class="stat">94% positive reviews on Steam.</em></p>
-
-      <div class="tags">
-        <span class="tag">UE5</span>
-		<span class="tag">Blueprints</span>
-        <span class="tag">C++</span>
-        <span class="tag">Multiplayer</span>
-        <span class="tag">Steam API</span>
-        <span class="tag">Telemetry</span>
-        <span class="tag">PostgreSQL</span>
-      </div>
 
       <div class="steam-embed">
         <iframe src="https://store.steampowered.com/widget/3961630/" width="100%" height="190"></iframe>
@@ -407,16 +392,8 @@
         <iframe src="https://www.youtube.com/embed/CKkXO-xdswY?si=odm7y1JyFQbsoprt" title="Knight Light" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
 
-      <p>A 3D character action game — defend a sleepy town from nightmare creatures.</p>
-      <p>As <strong>Technical Director</strong>, I managed 6 programmers, coordinated across art and design teams, and made sure technical decisions served the creative vision. Built a <strong>fluid animation system</strong> designed to accommodate the art team's workflow and support fast-paced combat feel.</p>
-
-      <div class="tags">
-        <span class="tag">Unreal Engine 5</span>
-        <span class="tag">C++</span>
-        <span class="tag">Blueprints</span>
-        <span class="tag">Animation Systems</span>
-        <span class="tag">Team Lead</span>
-      </div>
+      <p>A third person character action game with evocative, hand-crafted artwork.</p>
+      <p>As Technical Director I managed 6 programmers, coordinated across art and design teams, and made sure technical decisions served the creative vision. I also built a fluid animation system designed to accommodate the art team's workflow and support fast-paced combat feel.</p>
 
       <div class="steam-embed">
         <iframe src="https://store.steampowered.com/widget/3560620/" width="100%" height="190"></iframe>
@@ -435,15 +412,7 @@
       </div>
 
       <p>A cozy gardening game about caring for fantastical magical plants.</p>
-      <p>Joined mid-development and adapted to an existing codebase. Built an <strong>ImGui-based level editor</strong> for prop placement. Programmed particle effects — raindrops, pumpkin explosions, magical sparkles — using <strong>Lua for rapid iteration</strong>, then converted to C++ for performance.</p>
-
-      <div class="tags">
-        <span class="tag">C++</span>
-        <span class="tag">Lua</span>
-        <span class="tag">Custom Engine</span>
-        <span class="tag">ImGui</span>
-        <span class="tag">Particles</span>
-      </div>
+      <p>I Joined mid-development and adapted to an existing codebase. I used ImGui to make a level editor so we could easily rearrange props. I also designed particle effects like raindrops, pumpkin explosions, and magical sparkles using Lua for iteration, and then converted to C++ for performance.</p>
 
       <div class="steam-embed">
         <iframe src="https://store.steampowered.com/widget/3508840/" width="100%" height="190"></iframe>
@@ -452,22 +421,20 @@
 
     <div class="project">
       <div class="project-top">
-        <h3>Bassacre</h3>
-        <span class="role">Gameplay Programmer</span>
+        <h3>Strike Back</h3>
+        <span class="role">Producer · Programmer</span>
       </div>
-      <div class="project-meta">2022 · Twin-Stick Shooter · C · 5-person team</div>
+      <div class="project-meta">2023 · Fighting Game · Custom C++ Engine · 17-person team</div>
 
       <div class="video-box">
-        <iframe src="https://www.youtube.com/embed/_0QxuDoht6I?si=lPNUc9KtPYO3LE1X" title="Bassacre" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/6cAxIi8MiwE?si=uFD3BqmHVYql6Xdy" title="Strike Back" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
 
-      <p>Nuclear Throne-inspired twin-stick shooter built in C with a lightweight custom framework. Implemented the <strong>character controller</strong>, <strong>combat systems</strong>, and <strong>collision detection</strong>.</p>
+      <p>As producer, I recruited and organized a team of 17 sophomores to build a fighting game with a custom engine from scratch. I managed scope and creative direction conflicts across the team.</p>
+      <p>I also wrote an animation system that lets designers specify attack properties at particular frames of animation.</p>
 
-      <div class="tags">
-        <span class="tag">C</span>
-        <span class="tag">Custom Framework</span>
-        <span class="tag">Physics</span>
-        <span class="tag">Combat</span>
+      <div class="steam-embed">
+        <iframe src="https://store.steampowered.com/widget/3627450/" width="100%" height="190"></iframe>
       </div>
     </div>
 
@@ -477,26 +444,24 @@
 
     <div class="small-grid">
       <div class="small-project">
-        <h3>Strike Back</h3>
-        <div class="project-meta">Custom C++ Engine · Steam</div>
-        <p>Contributed to custom engine architecture and served as producer, coordinating across the team.</p>
-        <div class="tags">
-          <span class="tag">C++</span>
-          <span class="tag">Engine Dev</span>
+        <h3>Bassacre</h3>
+        <div class="project-meta">2022 · Twin-Stick Shooter · C · 5-person team</div>
+        <p>Nuclear Throne-inspired twin-stick shooter in C. Implemented character controller, combat systems, and collision detection.</p>
+        <div class="small-video-box">
+          <iframe src="https://www.youtube.com/embed/_0QxuDoht6I" title="Bassacre" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
       </div>
-
 
       <div class="small-project">
         <h3>Wrap Goblin</h3>
         <div class="project-meta">Game Jam · 48 hours · 3 people</div>
-        <p>Dungeon crawler blending 2D sprites in 3D space. Built in 2 days.</p>
-        <div class="tags">
-          <span class="tag">Jam</span>
-          <span class="tag">3D</span>
+        <p>Short, comedic dungeon crawler / horror game. Implemented 2D art assets in 3D space using materials in UE5.</p>
+        <div class="small-video-box">
+          <iframe src="https://www.youtube.com/embed/Ub21xiECmMs" title="Wrap Goblin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
       </div>
-
+    </div><!-- /.small-grid -->
+  </section><!-- /#work -->
 
   <!-- ========== SKILLS ========== -->
   <section id="skills">
@@ -560,20 +525,17 @@
         and a lot of design happens with very simple prototypes.
       </p>
       <p>
-        When I join a project, my first question is:
-        <em style="color: var(--yellow);">"How can I make this happen?"</em>
-      </p>
-      <p>
         Making games solo is satisfying, but the collaborative process is what
         makes this a passion. Working with a team toward a shared goal is
         where I do my best work.
       </p>
       <p>
-        When I'm not making games, I'm playing them. I gravitate toward
-        unique indie games with simple, elegant designs. Current favorite: UFO 50.
+        I play games voraciously; gravitating toward
+        unique indie games with simple, elegant designs. Some of my favorites are UFO 50, Ultrakill, and Mewgenics.
       </p>
 
       <div class="education">
+
         <p><span class="degree">B.S. Computer Science &amp; Game Design</span></p>
         <p class="school">DigiPen Institute of Technology</p>
         <br>
@@ -588,9 +550,9 @@
     <div class="section-label">// CONTACT</div>
 
     <div class="contact-box">
-      <p>Looking for gameplay programming and technical design roles.</p>
+      <p>Looking for opportunities to keep making interesting things.</p>
       <div class="contact-links">
-        <a href="mailto:gneeqo@proton.me">email</a>
+        <a href="mailto:nicolastoe@proton.me">email</a>
         <a href="https://www.linkedin.com/in/nico-toe">linkedin</a>
         <a href="https://github.com/gneeqo">github</a>
       </div>
@@ -598,7 +560,7 @@
   </section>
 
   <footer>
-    nico toé · 2025
+    nico toé · 2026
   </footer>
 
 </body>
