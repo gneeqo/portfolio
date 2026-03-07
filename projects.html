@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nico Toé</title>
+  <title>Projects — Nico Toé</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -25,14 +25,15 @@
 </head>
 <body>
 
-  <header class="top-bar">
-    <span class="site-name">Nico Toé</span>
+  <nav>
+    <span class="site-name"><a href="index.html">Nico Toé</a></span>
     <div class="contact-links">
       <a href="mailto:nicolastoe@proton.me">Email</a>
       <a href="https://www.linkedin.com/in/nico-toe">LinkedIn</a>
       <a href="https://github.com/gneeqo">GitHub</a>
+      <a href="index.html">About</a>
     </div>
-  </header>
+  </nav>
 
   <aside class="sidebar">
     <div class="sidebar-nav">
@@ -46,75 +47,57 @@
   </aside>
 
   <div class="main">
-    <div class="hero">
-      <img class="hero-portrait" src="images/portrait.jpg" alt="Nico Toé">
-      <div class="hero-text">
-        <p class="tagline">Game Developer &amp; Gameplay Programmer</p>
-        <p>I'm a game developer and gameplay programmer based in Seattle. I make games with teams, focusing on how players interact with the experience.</p>
-        <p>I thrive on rapid iteration — subtle changes make a huge difference, and a lot of design happens with very simple prototypes.</p>
-      </div>
-    </div>
-
-    <section class="skills-section">
-      <h2>Skills</h2>
-      <div class="skills-grid">
-        <div class="skills-group">
-          <h3 class="skills-label">Languages</h3>
-          <div class="skills-pills">
-            <span class="pill">C++</span>
-            <span class="pill">C</span>
-            <span class="pill">C#</span>
-            <span class="pill">Python</span>
-            <span class="pill">GDScript</span>
-            <span class="pill">GLSL</span>
-            <span class="pill">Lua</span>
+    <section>
+      <h2>All Projects</h2>
+      <div class="project-list">
+        <a class="project-card" href="projects/eidolon.html">
+          <img class="project-card-thumb" src="https://img.youtube.com/vi/NdUt3TE0nxY/maxresdefault.jpg" alt="Eidolon: Fate of Fools">
+          <div class="project-card-info">
+            <div class="project-card-title">Eidolon: Fate of Fools</div>
+            <div class="project-card-meta">2024–2025 · Arena Shooter · UE5 · 9-person team</div>
+            <div class="project-card-role">Designer · Programmer · Live Ops</div>
           </div>
-        </div>
-        <div class="skills-group">
-          <h3 class="skills-label">Engines</h3>
-          <div class="skills-pills">
-            <span class="pill">Unreal Engine 5</span>
-            <span class="pill">Godot</span>
-            <span class="pill">Unity</span>
-            <span class="pill">Custom C/C++</span>
-            <span class="pill">GameMaker</span>
+        </a>
+        <a class="project-card" href="projects/knight-light.html">
+          <img class="project-card-thumb" src="https://img.youtube.com/vi/CKkXO-xdswY/maxresdefault.jpg" alt="Knight Light">
+          <div class="project-card-info">
+            <div class="project-card-title">Knight Light</div>
+            <div class="project-card-meta">2024 · 3D Character Action · UE5 · 21-person team</div>
+            <div class="project-card-role">Technical Director</div>
           </div>
-        </div>
-        <div class="skills-group">
-          <h3 class="skills-label">Specializations</h3>
-          <div class="skills-pills">
-            <span class="pill">Gameplay Programming</span>
-            <span class="pill">Animation Systems</span>
-            <span class="pill">Particle &amp; VFX</span>
-            <span class="pill">Multiplayer Networking</span>
-            <span class="pill">Telemetry &amp; Analytics</span>
-            <span class="pill">Tool Development</span>
-            <span class="pill">Social Systems Design</span>
+        </a>
+        <a class="project-card" href="projects/witch-hazel.html">
+          <img class="project-card-thumb" src="https://img.youtube.com/vi/SbpCJeAJmgM/maxresdefault.jpg" alt="Witch Hazel">
+          <div class="project-card-info">
+            <div class="project-card-title">Witch Hazel</div>
+            <div class="project-card-meta">2023 · Cozy Gardening Sim · Custom C++ Engine</div>
+            <div class="project-card-role">Gameplay Programmer</div>
           </div>
-        </div>
-        <div class="skills-group">
-          <h3 class="skills-label">Infrastructure</h3>
-          <div class="skills-pills">
-            <span class="pill">Steam Platform</span>
-            <span class="pill">PostgreSQL</span>
-            <span class="pill">Linux / Servers</span>
-            <span class="pill">Git</span>
+        </a>
+        <a class="project-card" href="projects/strike-back.html">
+          <img class="project-card-thumb" src="https://img.youtube.com/vi/6cAxIi8MiwE/maxresdefault.jpg" alt="Strike Back">
+          <div class="project-card-info">
+            <div class="project-card-title">Strike Back</div>
+            <div class="project-card-meta">2023 · Fighting Game · Custom C++ Engine · 17-person team</div>
+            <div class="project-card-role">Producer · Programmer</div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="education-section">
-      <h2>Education</h2>
-      <div class="education-grid">
-        <div class="education-card">
-          <div class="degree">B.S. Computer Science &amp; Game Design</div>
-          <div class="school">DigiPen Institute of Technology</div>
-        </div>
-        <div class="education-card">
-          <div class="degree">A.A. Arts and Sciences</div>
-          <div class="school">Wenatchee Valley College</div>
-        </div>
+        </a>
+        <a class="project-card" href="projects/bassacre.html">
+          <img class="project-card-thumb" src="https://img.youtube.com/vi/_0QxuDoht6I/maxresdefault.jpg" alt="Bassacre">
+          <div class="project-card-info">
+            <div class="project-card-title">Bassacre</div>
+            <div class="project-card-meta">2022 · Twin-Stick Shooter · C · 5-person team</div>
+            <div class="project-card-role">Gameplay Programmer</div>
+          </div>
+        </a>
+        <a class="project-card" href="projects/wrap-goblin.html">
+          <img class="project-card-thumb" src="https://img.youtube.com/vi/Ub21xiECmMs/maxresdefault.jpg" alt="Wrap Goblin">
+          <div class="project-card-info">
+            <div class="project-card-title">Wrap Goblin</div>
+            <div class="project-card-meta">Game Jam · 48 hours · 3 people</div>
+            <div class="project-card-role">Developer</div>
+          </div>
+        </a>
       </div>
     </section>
   </div>

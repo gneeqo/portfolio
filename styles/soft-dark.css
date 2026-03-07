@@ -1,0 +1,55 @@
+/* Theme: Soft Dark — Gentle dark gray, not terminal */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 17px; line-height: 1.7; color: #d4d4d4; background: #1e1e1e; max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem; }
+a { color: #7eb8da; text-decoration: none; }
+a:hover { text-decoration: underline; color: #a8d4ef; }
+nav { display: flex; align-items: baseline; gap: 1.5rem; padding: 1.5rem 0; border-bottom: 1px solid #333; margin-bottom: 3rem; }
+nav .site-name { font-size: 1.1rem; font-weight: 700; color: #e8e8e8; margin-right: auto; }
+nav a { font-size: 0.95rem; color: #999; }
+nav a:hover { color: #e8e8e8; }
+.hero { display: flex; gap: 2rem; align-items: flex-start; margin-bottom: 3rem; }
+.hero-portrait { width: 160px; height: 200px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
+.hero-text h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; color: #f0f0f0; }
+.hero-text p { color: #b0b0b0; margin-bottom: 0.75rem; }
+.hero-text .cta { display: inline-block; margin-top: 0.5rem; font-weight: 600; }
+section { margin-bottom: 3rem; }
+section h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; color: #f0f0f0; }
+section p { margin-bottom: 0.75rem; color: #b8b8b8; }
+.skills { color: #b0b0b0; line-height: 1.9; }
+.skills-category { margin-bottom: 0.5rem; }
+.skills-category strong { color: #e0e0e0; }
+.education-item { margin-bottom: 0.75rem; }
+.education-item .degree { font-weight: 600; color: #e0e0e0; }
+.education-item .school { color: #888; font-size: 0.95rem; }
+.contact-links { display: flex; gap: 1.25rem; margin-top: 0.5rem; }
+.project-list { display: flex; flex-direction: column; gap: 1.5rem; }
+.project-card { display: flex; gap: 1.25rem; align-items: flex-start; text-decoration: none; color: inherit; padding: 0.75rem 0; }
+.project-card:hover { text-decoration: none; }
+.project-card:hover .project-card-title { color: #7eb8da; }
+.project-card-thumb { width: 200px; height: 113px; object-fit: cover; border-radius: 4px; flex-shrink: 0; background: #2a2a2a; }
+.project-card-info { flex: 1; }
+.project-card-title { font-size: 1.1rem; font-weight: 600; color: #e0e0e0; margin-bottom: 0.25rem; }
+.project-card-meta { font-size: 0.9rem; color: #888; margin-bottom: 0.15rem; }
+.project-card-role { font-size: 0.9rem; color: #777; }
+.project-back { display: inline-block; margin-bottom: 1.5rem; font-size: 0.95rem; color: #888; }
+.project-back:hover { color: #e0e0e0; }
+.project-header h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 0.25rem; color: #f0f0f0; }
+.project-header .role { font-size: 1rem; color: #7eb8da; font-weight: 600; margin-bottom: 0.25rem; }
+.project-header .meta { font-size: 0.95rem; color: #888; margin-bottom: 1.5rem; }
+.video-container { position: relative; width: 100%; padding-bottom: 56.25%; margin-bottom: 1.5rem; background: #000; }
+.video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+.project-body p { margin-bottom: 0.75rem; color: #b8b8b8; }
+.project-body .stat { font-weight: 600; color: #7eb8da; }
+.steam-widget { margin-top: 1.5rem; }
+.steam-widget iframe { border: 0; max-width: 100%; }
+footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid #333; color: #888; font-size: 0.9rem; }
+footer p { margin-bottom: 0.5rem; color: #888; }
+footer .copyright { margin-top: 1rem; color: #666; font-size: 0.8rem; }
+@media (max-width: 600px) {
+  body { padding: 1rem; }
+  .hero { flex-direction: column; align-items: center; text-align: center; }
+  .hero-portrait { width: 140px; height: 175px; }
+  .project-card { flex-direction: column; }
+  .project-card-thumb { width: 100%; height: auto; aspect-ratio: 16 / 9; }
+  nav { flex-wrap: wrap; gap: 0.75rem; }
+}
