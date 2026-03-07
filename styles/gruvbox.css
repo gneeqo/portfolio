@@ -1,0 +1,287 @@
+/* Portfolio — Gruvbox Material Light + Nunito + Pill Tags */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #4f3829;
+  background: #f2e5bc;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 540px;
+  gap: 2.5rem;
+  grid-template-rows: auto auto auto;
+}
+
+a { color: #b57614; text-decoration: none; }
+a:hover { text-decoration: underline; color: #8f6b32; }
+
+/* --- TOP BAR (contact links, full width) --- */
+.top-bar {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+
+.top-bar .site-name {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #4f3829;
+  margin-right: auto;
+}
+
+.top-bar .contact-links {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.top-bar .contact-links a {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #6c5a4a;
+}
+
+.top-bar .contact-links a:hover {
+  color: #4f3829;
+  text-decoration: none;
+}
+
+/* --- NAV (for project pages — site name + contact) --- */
+nav:not(.sidebar-nav) {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: 1rem 0;
+}
+
+nav .site-name { font-size: 1.4rem; font-weight: 800; color: #4f3829; margin-right: auto; }
+nav .site-name a { color: inherit; text-decoration: none; }
+nav .site-name a:hover { text-decoration: none; }
+nav .contact-links { display: flex; gap: 1.25rem; }
+nav .contact-links a { font-size: 0.9rem; font-weight: 600; color: #6c5a4a; }
+nav .contact-links a:hover { color: #4f3829; text-decoration: none; }
+
+/* --- SIDEBAR (right column) --- */
+.sidebar {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: start;
+}
+
+.sidebar-nav {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+/* --- PROJECT CARD LINKS (sidebar) --- */
+.project-card-link {
+  display: block;
+  padding: 0.5rem;
+  border-radius: 10px;
+  background: #e8dbb5;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #4f3829;
+  text-decoration: none;
+  line-height: 1.3;
+  transition: background 0.15s;
+}
+
+.project-card-link:hover {
+  background: #ded1a8;
+  text-decoration: none;
+}
+
+.project-card-link.active {
+  background: #d5c89e;
+  color: #4f3829;
+}
+
+.project-meta {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #7c6b5d;
+  margin-top: 0.15rem;
+}
+
+.project-role {
+  display: block;
+  font-size: 0.75rem;
+  color: #b57614;
+  font-weight: 600;
+}
+
+.sidebar-thumb {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 0.3rem;
+}
+
+/* --- MAIN CONTENT (left column) --- */
+.main {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+/* --- HERO / INTRO --- */
+.hero {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-bottom: 2.5rem;
+}
+
+.hero-portrait {
+  width: 180px;
+  height: 225px;
+  object-fit: cover;
+  border-radius: 14px;
+  flex-shrink: 0;
+}
+
+.hero-text .tagline { font-size: 1.3rem; font-weight: 800; color: #4f3829; margin-bottom: 0.5rem; line-height: 1.2; }
+.hero-text p { color: #6c5a4a; margin-bottom: 0.75rem; }
+
+/* --- SECTIONS --- */
+section { margin-bottom: 2rem; }
+section h2 { font-size: 1.1rem; font-weight: 800; margin-bottom: 0.75rem; color: #4f3829; text-transform: uppercase; letter-spacing: 0.04em; }
+
+/* --- SKILLS — 2-Column Grid Layout --- */
+.skills-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.skills-group {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 0.75rem;
+  align-items: baseline;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #ded1a8;
+}
+
+.skills-group:last-child { border-bottom: none; }
+
+.skills-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #6c5a4a;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.skills-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.pill {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  background: #e8dbb5;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #4f3829;
+  white-space: nowrap;
+}
+
+/* --- EDUCATION — Card Layout --- */
+.education-grid {
+  display: flex;
+  gap: 1rem;
+}
+
+.education-card {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  background: #e8dbb5;
+  border-radius: 10px;
+}
+
+.education-card .degree { font-weight: 700; color: #4f3829; font-size: 0.95rem; }
+.education-card .school { color: #6c5a4a; font-size: 0.85rem; }
+
+/* --- PROJECT DETAIL --- */
+.project-back { display: inline-block; margin-bottom: 1.5rem; font-size: 0.95rem; color: #6c5a4a; }
+.project-back:hover { color: #4f3829; }
+
+.project-header h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.25rem; color: #4f3829; }
+.project-header .role { font-size: 1rem; color: #b57614; font-weight: 600; margin-bottom: 0.25rem; }
+.project-header .meta { font-size: 0.95rem; color: #6c5a4a; margin-bottom: 1.5rem; }
+
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  margin-bottom: 1.5rem;
+  background: #000;
+  border-radius: 14px;
+  overflow: hidden;
+}
+.video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+.project-body p { margin-bottom: 0.75rem; color: #6c5a4a; }
+.project-body .stat { font-weight: 700; color: #b57614; }
+
+.steam-widget { margin-top: 1.5rem; }
+.steam-widget iframe { border: 0; max-width: 100%; }
+
+/* --- PROJECT LIST --- */
+.project-list { display: flex; flex-direction: column; gap: 1.5rem; }
+.project-card { display: flex; gap: 1.25rem; align-items: flex-start; text-decoration: none; color: inherit; padding: 1rem; border-radius: 14px; background: #e8dbb5; }
+.project-card:hover { text-decoration: none; }
+.project-card:hover .project-card-title { color: #b57614; }
+.project-card-thumb { width: 200px; height: 113px; object-fit: cover; border-radius: 10px; flex-shrink: 0; background: #d5c89e; }
+.project-card-info { flex: 1; }
+.project-card-title { font-size: 1.05rem; font-weight: 700; color: #4f3829; margin-bottom: 0.25rem; }
+.project-card-meta { font-size: 0.9rem; color: #6c5a4a; margin-bottom: 0.15rem; }
+.project-card-role { font-size: 0.9rem; color: #7c6b5d; }
+
+/* --- FOOTER --- */
+footer {
+  grid-column: 1 / -1;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  color: #7c6b5d;
+  font-size: 0.8rem;
+}
+
+footer .copyright { color: #7c6b5d; }
+
+/* Legacy contact-links in footer (for backwards compat) */
+footer .contact-links { display: flex; gap: 1.25rem; margin-bottom: 0.5rem; }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 700px) {
+  body { grid-template-columns: 1fr; padding: 1rem; gap: 0; }
+  .top-bar { grid-column: 1; margin-bottom: 1rem; }
+  .top-bar .contact-links { justify-content: center; }
+  nav { grid-column: 1; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem; }
+  .sidebar { grid-column: 1; grid-row: auto; position: static; margin-bottom: 2rem; }
+  .sidebar-nav { grid-template-columns: repeat(2, 1fr); gap: 0.4rem; }
+  .sidebar-nav .project-role { display: none; }
+  .sidebar-thumb { display: none; }
+  .main { grid-column: 1; grid-row: auto; }
+  footer { grid-column: 1; }
+  .hero { flex-direction: column; align-items: center; text-align: center; }
+  .hero-portrait { width: 150px; height: 188px; }
+  .skills-group { grid-template-columns: 1fr; gap: 0.25rem; }
+  .education-grid { flex-direction: column; }
+  .project-card { flex-direction: column; }
+  .project-card-thumb { width: 100%; height: auto; aspect-ratio: 16 / 9; }
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — Nico Toé</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link id="theme-css" rel="stylesheet" href="style.css">
+  <script>
+    const p = new URLSearchParams(location.search).get('style');
+    if (p) {
+      document.getElementById('theme-css').href = 'styles/' + p + '.css';
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('a[href]').forEach(a => {
+          const h = a.getAttribute('href');
+          if (h && h.endsWith('.html') && !h.startsWith('http')) {
+            a.href = h + '?style=' + p;
+          }
+        });
+      });
+    }
+  </script>
+</head>
+<body>
+
+  <nav>
+    <span class="site-name"><a href="index.html">Nico Toé</a></span>
+    <div class="contact-links">
+      <a href="mailto:nicolastoe@proton.me">Email</a>
+      <a href="https://www.linkedin.com/in/nico-toe">LinkedIn</a>
+      <a href="https://github.com/gneeqo">GitHub</a>
+      <a href="index.html">About</a>
+    </div>
+  </nav>
+
+  <aside class="sidebar">
+    <div class="sidebar-nav">
+      <a class="project-card-link" href="projects/eidolon.html"><img class="sidebar-thumb" src="https://img.youtube.com/vi/NdUt3TE0nxY/maxresdefault.jpg" alt="">Eidolon: Fate of Fools<span class="project-meta">2024–25 · Arena Shooter · UE5</span><span class="project-role">Designer / Programmer</span></a>
+      <a class="project-card-link" href="projects/knight-light.html"><img class="sidebar-thumb" src="https://img.youtube.com/vi/CKkXO-xdswY/maxresdefault.jpg" alt="">Knight Light<span class="project-meta">2024 · Character Action · UE5</span><span class="project-role">Technical Director</span></a>
+      <a class="project-card-link" href="projects/witch-hazel.html"><img class="sidebar-thumb" src="https://img.youtube.com/vi/SbpCJeAJmgM/maxresdefault.jpg" alt="">Witch Hazel<span class="project-meta">2023 · Gardening Sim · C++</span><span class="project-role">Gameplay Programmer</span></a>
+      <a class="project-card-link" href="projects/strike-back.html"><img class="sidebar-thumb" src="https://img.youtube.com/vi/6cAxIi8MiwE/maxresdefault.jpg" alt="">Strike Back<span class="project-meta">2023 · Fighting Game · C++</span><span class="project-role">Producer / Programmer</span></a>
+      <a class="project-card-link" href="projects/bassacre.html"><img class="sidebar-thumb" src="https://img.youtube.com/vi/_0QxuDoht6I/maxresdefault.jpg" alt="">Bassacre<span class="project-meta">2022 · Twin-Stick Shooter · C</span><span class="project-role">Gameplay Programmer</span></a>
+      <a class="project-card-link" href="projects/wrap-goblin.html"><img class="sidebar-thumb" src="https://img.youtube.com/vi/Ub21xiECmMs/maxresdefault.jpg" alt="">Wrap Goblin<span class="project-meta">Game Jam · 48 hours</span><span class="project-role">Developer</span></a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <section>
+      <h2>All Projects</h2>
+      <div class="project-list">
+        <a class="project-card" href="projects/eidolon.html">
+          <img class="project-card-thumb" src="https://img.youtube.com/vi/NdUt3TE0nxY/maxresdefault.jpg" alt="Eidolon: Fate of Fools">
+          <div class="project-card-info">
+            <div class="project-card-title">Eidolon: Fate of Fools</div>
+            <div class="project-card-meta">2024–2025 · Arena Shooter · UE5 · 9-person team</div>
+            <div class="project-card-role">Designer · Programmer · Live Ops</div>
+          </div>
+        </a>
+        <a class="project-card" href="projects/knight-light.html">
+          <img class="project-card-thumb" src="https://img.youtube.com/vi/CKkXO-xdswY/maxresdefault.jpg" alt="Knight Light">
+          <div class="project-card-info">
+            <div class="project-card-title">Knight Light</div>
+            <div class="project-card-meta">2024 · 3D Character Action · UE5 · 21-person team</div>
+            <div class="project-card-role">Technical Director</div>
+          </div>
+        </a>
+        <a class="project-card" href="projects/witch-hazel.html">
+          <img class="project-card-thumb" src="https://img.youtube.com/vi/SbpCJeAJmgM/maxresdefault.jpg" alt="Witch Hazel">
+          <div class="project-card-info">
+            <div class="project-card-title">Witch Hazel</div>
+            <div class="project-card-meta">2023 · Cozy Gardening Sim · Custom C++ Engine</div>
+            <div class="project-card-role">Gameplay Programmer</div>
+          </div>
+        </a>
+        <a class="project-card" href="projects/strike-back.html">
+          <img class="project-card-thumb" src="https://img.youtube.com/vi/6cAxIi8MiwE/maxresdefault.jpg" alt="Strike Back">
+          <div class="project-card-info">
+            <div class="project-card-title">Strike Back</div>
+            <div class="project-card-meta">2023 · Fighting Game · Custom C++ Engine · 17-person team</div>
+            <div class="project-card-role">Producer · Programmer</div>
+          </div>
+        </a>
+        <a class="project-card" href="projects/bassacre.html">
+          <img class="project-card-thumb" src="https://img.youtube.com/vi/_0QxuDoht6I/maxresdefault.jpg" alt="Bassacre">
+          <div class="project-card-info">
+            <div class="project-card-title">Bassacre</div>
+            <div class="project-card-meta">2022 · Twin-Stick Shooter · C · 5-person team</div>
+            <div class="project-card-role">Gameplay Programmer</div>
+          </div>
+        </a>
+        <a class="project-card" href="projects/wrap-goblin.html">
+          <img class="project-card-thumb" src="https://img.youtube.com/vi/Ub21xiECmMs/maxresdefault.jpg" alt="Wrap Goblin">
+          <div class="project-card-info">
+            <div class="project-card-title">Wrap Goblin</div>
+            <div class="project-card-meta">Game Jam · 48 hours · 3 people</div>
+            <div class="project-card-role">Developer</div>
+          </div>
+        </a>
+      </div>
+    </section>
+  </div>
+
+</body>
+</html>

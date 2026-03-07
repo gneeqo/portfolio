@@ -1,0 +1,55 @@
+/* Theme: Compact Warm — Dense single-column, small thumbnails, everything visible at once */
+/* Layout: COMPACT dense layout — smaller thumbnails, tighter spacing, all content visible without much scrolling */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 16px; line-height: 1.6; color: #3c3836; background: #f6f1e8; max-width: 640px; margin: 0 auto; padding: 1.5rem 1.25rem; }
+a { color: #8f6b32; text-decoration: none; }
+a:hover { text-decoration: underline; color: #6d4f1e; }
+nav { display: flex; align-items: baseline; gap: 1.5rem; padding: 1rem 0; border-bottom: 2px solid #3c3836; margin-bottom: 2rem; }
+nav .site-name { font-size: 1.1rem; font-weight: 700; color: #3c3836; margin-right: auto; }
+nav a { font-size: 0.9rem; color: #665c54; }
+nav a:hover { color: #3c3836; }
+.hero { display: flex; gap: 1.25rem; align-items: center; margin-bottom: 2rem; }
+.hero-portrait { width: 100px; height: 125px; object-fit: cover; border-radius: 8px; flex-shrink: 0; }
+.hero-text h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.15rem; color: #3c3836; }
+.hero-text .tagline { font-size: 0.95rem; font-weight: 600; color: #8f6b32; margin-bottom: 0.4rem; }
+.hero-text p { color: #504945; font-size: 0.9rem; margin-bottom: 0.4rem; line-height: 1.5; }
+section { margin-bottom: 2rem; }
+section h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.6rem; color: #3c3836; }
+section p { margin-bottom: 0.5rem; color: #504945; font-size: 0.95rem; }
+.skills { color: #504945; line-height: 1.7; font-size: 0.9rem; }
+.skills-category { margin-bottom: 0.3rem; }
+.skills-category strong { color: #3c3836; }
+.education-item { margin-bottom: 0.5rem; }
+.education-item .degree { font-weight: 600; color: #3c3836; font-size: 0.95rem; }
+.education-item .school { color: #665c54; font-size: 0.85rem; }
+.contact-links { display: flex; gap: 1rem; margin-top: 0.4rem; font-size: 0.9rem; }
+.project-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+.project-card { display: flex; flex-direction: column; text-decoration: none; color: inherit; border-radius: 8px; overflow: hidden; background: #ede7da; }
+.project-card:hover { text-decoration: none; }
+.project-card:hover .project-card-title { color: #8f6b32; }
+.project-card-thumb { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 0; background: #d5c4a1; }
+.project-card-info { padding: 0.5rem 0.6rem; }
+.project-card-title { font-size: 0.9rem; font-weight: 600; color: #3c3836; margin-bottom: 0.1rem; }
+.project-card-meta { font-size: 0.78rem; color: #665c54; margin-bottom: 0.05rem; }
+.project-card-role { font-size: 0.78rem; color: #7c6f64; }
+.project-back { display: inline-block; margin-bottom: 1.5rem; font-size: 0.95rem; color: #665c54; }
+.project-back:hover { color: #3c3836; }
+.project-header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem; color: #3c3836; }
+.project-header .role { font-size: 1rem; color: #8f6b32; font-weight: 600; margin-bottom: 0.25rem; }
+.project-header .meta { font-size: 0.95rem; color: #665c54; margin-bottom: 1.5rem; }
+.video-container { position: relative; width: 100%; padding-bottom: 56.25%; margin-bottom: 1.5rem; background: #000; border-radius: 8px; overflow: hidden; }
+.video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+.project-body p { margin-bottom: 0.75rem; color: #504945; }
+.project-body .stat { font-weight: 600; color: #8f6b32; }
+.steam-widget { margin-top: 1.5rem; }
+.steam-widget iframe { border: 0; max-width: 100%; }
+footer { margin-top: 2.5rem; padding-top: 1rem; border-top: 2px solid #3c3836; color: #665c54; font-size: 0.85rem; }
+footer p { margin-bottom: 0.4rem; color: #665c54; }
+footer .copyright { margin-top: 0.75rem; color: #7c6f64; font-size: 0.78rem; }
+@media (max-width: 500px) {
+  body { padding: 1rem; }
+  .project-list { grid-template-columns: 1fr; }
+  .hero { flex-direction: column; align-items: center; text-align: center; }
+  .hero-portrait { width: 90px; height: 112px; }
+  nav { flex-wrap: wrap; gap: 0.75rem; }
+}

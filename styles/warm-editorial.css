@@ -1,0 +1,56 @@
+/* Theme: Warm Editorial — Portrait left, horizontal project cards, warm cream */
+/* Layout: Standard left-portrait hero, project list as horizontal rows */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 17px; line-height: 1.7; color: #3c3836; background: #f5f0e8; max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem; }
+a { color: #8f6b32; text-decoration: none; }
+a:hover { text-decoration: underline; color: #6d4f1e; }
+nav { display: flex; align-items: baseline; gap: 1.5rem; padding: 1.5rem 0; border-bottom: 3px solid #3c3836; margin-bottom: 3rem; }
+nav .site-name { font-size: 1.15rem; font-weight: 700; color: #3c3836; margin-right: auto; }
+nav a { font-size: 0.95rem; color: #665c54; }
+nav a:hover { color: #3c3836; }
+.hero { display: flex; gap: 2rem; align-items: flex-start; margin-bottom: 3rem; }
+.hero-portrait { width: 160px; height: 200px; object-fit: cover; border-radius: 10px; flex-shrink: 0; }
+.hero-text h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.25rem; color: #3c3836; }
+.hero-text .tagline { font-size: 1.05rem; font-weight: 600; color: #8f6b32; margin-bottom: 0.75rem; }
+.hero-text p { color: #504945; margin-bottom: 0.75rem; }
+section { margin-bottom: 3rem; }
+section h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; color: #3c3836; border-bottom: 2px solid #d5c4a1; padding-bottom: 0.5rem; }
+section p { margin-bottom: 0.75rem; color: #504945; }
+.skills { color: #504945; line-height: 1.9; }
+.skills-category { margin-bottom: 0.5rem; }
+.skills-category strong { color: #3c3836; }
+.education-item { margin-bottom: 0.75rem; }
+.education-item .degree { font-weight: 600; color: #3c3836; }
+.education-item .school { color: #665c54; font-size: 0.95rem; }
+.contact-links { display: flex; gap: 1.25rem; margin-top: 0.5rem; }
+.project-list { display: flex; flex-direction: column; gap: 1.5rem; }
+.project-card { display: flex; gap: 1.25rem; align-items: flex-start; text-decoration: none; color: inherit; padding: 0.75rem 0; }
+.project-card:hover { text-decoration: none; }
+.project-card:hover .project-card-title { color: #8f6b32; }
+.project-card-thumb { width: 200px; height: 113px; object-fit: cover; border-radius: 8px; flex-shrink: 0; background: #d5c4a1; }
+.project-card-info { flex: 1; }
+.project-card-title { font-size: 1.1rem; font-weight: 600; color: #3c3836; margin-bottom: 0.25rem; }
+.project-card-meta { font-size: 0.9rem; color: #665c54; margin-bottom: 0.15rem; }
+.project-card-role { font-size: 0.9rem; color: #7c6f64; }
+.project-back { display: inline-block; margin-bottom: 1.5rem; font-size: 0.95rem; color: #665c54; }
+.project-back:hover { color: #3c3836; }
+.project-header h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 0.25rem; color: #3c3836; }
+.project-header .role { font-size: 1rem; color: #8f6b32; font-weight: 600; margin-bottom: 0.25rem; }
+.project-header .meta { font-size: 0.95rem; color: #665c54; margin-bottom: 1.5rem; }
+.video-container { position: relative; width: 100%; padding-bottom: 56.25%; margin-bottom: 1.5rem; background: #000; border-radius: 8px; overflow: hidden; }
+.video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+.project-body p { margin-bottom: 0.75rem; color: #504945; }
+.project-body .stat { font-weight: 600; color: #8f6b32; }
+.steam-widget { margin-top: 1.5rem; }
+.steam-widget iframe { border: 0; max-width: 100%; }
+footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 3px solid #3c3836; color: #665c54; font-size: 0.9rem; }
+footer p { margin-bottom: 0.5rem; color: #665c54; }
+footer .copyright { margin-top: 1rem; color: #7c6f64; font-size: 0.8rem; }
+@media (max-width: 600px) {
+  body { padding: 1rem; }
+  .hero { flex-direction: column; align-items: center; text-align: center; }
+  .hero-portrait { width: 140px; height: 175px; }
+  .project-card { flex-direction: column; }
+  .project-card-thumb { width: 100%; height: auto; aspect-ratio: 16 / 9; }
+  nav { flex-wrap: wrap; gap: 0.75rem; }
+}

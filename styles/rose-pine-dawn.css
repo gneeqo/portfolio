@@ -1,0 +1,112 @@
+/* Theme: Rosé Pine Dawn — Warm blush tones with rose accent */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #575279;
+  background: #faf4ed;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 540px;
+  gap: 2.5rem;
+  grid-template-rows: auto auto auto;
+}
+
+a { color: #d7827e; text-decoration: none; }
+a:hover { text-decoration: underline; color: #b4637a; }
+
+nav:not(.sidebar-nav) {
+  grid-column: 1 / -1;
+  display: flex; align-items: baseline; gap: 1.5rem;
+  padding: 1.5rem 0; border-bottom: 3px solid #575279; margin-bottom: 0;
+}
+nav .site-name { font-size: 1.3rem; font-weight: 800; color: #575279; margin-right: auto; }
+nav .site-name a { color: inherit; text-decoration: none; }
+nav .site-name a:hover { text-decoration: none; }
+nav a { font-size: 0.95rem; color: #797593; font-weight: 500; }
+nav a:hover { color: #575279; text-decoration: none; }
+
+.sidebar { grid-column: 2; grid-row: 2; align-self: start; }
+.sidebar h3 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #797593; margin-bottom: 0.75rem; }
+.sidebar-nav { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+
+.project-card-link {
+  display: block; padding: 0.5rem; border-radius: 10px; background: #f2e9e1;
+  font-size: 0.9rem; font-weight: 700; color: #575279; text-decoration: none; line-height: 1.3; transition: background 0.15s;
+}
+.project-card-link:hover { background: #ead9d0; text-decoration: none; }
+.project-card-link.active { background: #dfc9be; }
+.project-meta { display: block; font-size: 0.75rem; font-weight: 400; color: #797593; margin-top: 0.15rem; }
+.project-role { display: block; font-size: 0.75rem; color: #d7827e; font-weight: 600; }
+
+.sidebar-nav a { display: block; padding: 0.4rem 0.6rem; border-radius: 6px; font-size: 0.9rem; color: #797593; text-decoration: none; line-height: 1.4; }
+.sidebar-nav a:hover { background: #f2e9e1; color: #575279; text-decoration: none; }
+.sidebar-nav a.active { background: #dfc9be; color: #575279; font-weight: 600; }
+.sidebar-nav .project-role { display: block; font-size: 0.78rem; color: #9893a5; font-weight: 400; }
+.sidebar-thumb { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; margin-bottom: 0.3rem; }
+
+.main { grid-column: 1; grid-row: 2; }
+
+.hero { display: flex; gap: 2rem; align-items: flex-start; margin-bottom: 2.5rem; }
+.hero-portrait { width: 180px; height: 225px; object-fit: cover; border-radius: 14px; flex-shrink: 0; }
+.hero-text h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.25rem; color: #575279; line-height: 1.15; }
+.hero-text .tagline { font-size: 1.05rem; font-weight: 600; color: #d7827e; margin-bottom: 0.75rem; }
+.hero-text p { color: #797593; margin-bottom: 0.75rem; }
+
+section { margin-bottom: 2.5rem; }
+section h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.75rem; color: #575279; }
+section p { margin-bottom: 0.75rem; color: #797593; }
+.skills { color: #797593; line-height: 1.9; }
+.skills-category { margin-bottom: 0.4rem; }
+.skills-category strong { color: #575279; font-weight: 700; }
+.education-item { margin-bottom: 0.6rem; }
+.education-item .degree { font-weight: 700; color: #575279; }
+.education-item .school { color: #797593; font-size: 0.95rem; }
+.contact-links { display: flex; gap: 1.25rem; margin-top: 0.5rem; }
+
+.project-back { display: inline-block; margin-bottom: 1.5rem; font-size: 0.95rem; color: #797593; }
+.project-back:hover { color: #575279; }
+.project-header h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.25rem; color: #575279; }
+.project-header .role { font-size: 1rem; color: #d7827e; font-weight: 600; margin-bottom: 0.25rem; }
+.project-header .meta { font-size: 0.95rem; color: #797593; margin-bottom: 1.5rem; }
+.video-container { position: relative; width: 100%; padding-bottom: 56.25%; margin-bottom: 1.5rem; background: #000; border-radius: 14px; overflow: hidden; }
+.video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+.project-body p { margin-bottom: 0.75rem; color: #797593; }
+.project-body .stat { font-weight: 700; color: #d7827e; }
+.steam-widget { margin-top: 1.5rem; }
+.steam-widget iframe { border: 0; max-width: 100%; }
+
+.project-list { display: flex; flex-direction: column; gap: 1.5rem; }
+.project-card { display: flex; gap: 1.25rem; align-items: flex-start; text-decoration: none; color: inherit; padding: 1rem; border-radius: 14px; background: #f2e9e1; }
+.project-card:hover { text-decoration: none; }
+.project-card:hover .project-card-title { color: #d7827e; }
+.project-card-thumb { width: 200px; height: 113px; object-fit: cover; border-radius: 10px; flex-shrink: 0; background: #dfc9be; }
+.project-card-info { flex: 1; }
+.project-card-title { font-size: 1.05rem; font-weight: 700; color: #575279; margin-bottom: 0.25rem; }
+.project-card-meta { font-size: 0.9rem; color: #797593; margin-bottom: 0.15rem; }
+.project-card-role { font-size: 0.9rem; color: #9893a5; }
+
+footer { grid-column: 1 / -1; margin-top: 2rem; padding-top: 1.5rem; color: #797593; font-size: 0.9rem; }
+footer p { margin-bottom: 0.5rem; color: #797593; }
+footer .copyright { margin-top: 1rem; color: #9893a5; font-size: 0.8rem; }
+
+@media (max-width: 700px) {
+  body { grid-template-columns: 1fr; padding: 1rem; gap: 0; }
+  nav { grid-column: 1; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem; }
+  .sidebar { grid-column: 1; grid-row: auto; position: static; margin-bottom: 2rem; }
+  .sidebar-nav { grid-template-columns: repeat(2, 1fr); gap: 0.4rem; }
+  .sidebar-nav a { padding: 0.3rem 0.6rem; font-size: 0.85rem; }
+  .sidebar-nav .project-role { display: none; }
+  .sidebar-thumb { display: none; }
+  .main { grid-column: 1; grid-row: auto; }
+  footer { grid-column: 1; }
+  .hero { flex-direction: column; align-items: center; text-align: center; }
+  .hero-portrait { width: 150px; height: 188px; }
+  .project-card { flex-direction: column; }
+  .project-card-thumb { width: 100%; height: auto; aspect-ratio: 16 / 9; }
+  .contact-links { justify-content: center; }
+}

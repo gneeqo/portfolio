@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wrap Goblin — Nico Toé</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link id="theme-css" rel="stylesheet" href="../style.css">
+  <script>
+    const p = new URLSearchParams(location.search).get('style');
+    if (p) {
+      document.getElementById('theme-css').href = '../styles/' + p + '.css';
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('a[href]').forEach(a => {
+          const h = a.getAttribute('href');
+          if (h && h.endsWith('.html') && !h.startsWith('http')) {
+            a.href = h + '?style=' + p;
+          }
+        });
+      });
+    }
+  </script>
+</head>
+<body>
+
+  <nav>
+    <span class="site-name"><a href="../index.html">Nico Toé</a></span>
+    <div class="contact-links">
+      <a href="mailto:nicolastoe@proton.me">Email</a>
+      <a href="https://www.linkedin.com/in/nico-toe">LinkedIn</a>
+      <a href="https://github.com/gneeqo">GitHub</a>
+      <a href="../index.html">About</a>
+    </div>
+  </nav>
+
+  <aside class="sidebar">
+    <div class="sidebar-nav">
+      <a class="project-card-link" href="eidolon.html"><img class="sidebar-thumb" src="https://img.youtube.com/vi/NdUt3TE0nxY/maxresdefault.jpg" alt="">Eidolon: Fate of Fools<span class="project-meta">2024–25 · Arena Shooter · UE5</span><span class="project-role">Designer / Programmer</span></a>
+      <a class="project-card-link" href="knight-light.html"><img class="sidebar-thumb" src="https://img.youtube.com/vi/CKkXO-xdswY/maxresdefault.jpg" alt="">Knight Light<span class="project-meta">2024 · Character Action · UE5</span><span class="project-role">Technical Director</span></a>
+      <a class="project-card-link" href="witch-hazel.html"><img class="sidebar-thumb" src="https://img.youtube.com/vi/SbpCJeAJmgM/maxresdefault.jpg" alt="">Witch Hazel<span class="project-meta">2023 · Gardening Sim · C++</span><span class="project-role">Gameplay Programmer</span></a>
+      <a class="project-card-link" href="strike-back.html"><img class="sidebar-thumb" src="https://img.youtube.com/vi/6cAxIi8MiwE/maxresdefault.jpg" alt="">Strike Back<span class="project-meta">2023 · Fighting Game · C++</span><span class="project-role">Producer / Programmer</span></a>
+      <a class="project-card-link" href="bassacre.html"><img class="sidebar-thumb" src="https://img.youtube.com/vi/_0QxuDoht6I/maxresdefault.jpg" alt="">Bassacre<span class="project-meta">2022 · Twin-Stick Shooter · C</span><span class="project-role">Gameplay Programmer</span></a>
+      <a class="project-card-link active" href="wrap-goblin.html"><img class="sidebar-thumb" src="https://img.youtube.com/vi/Ub21xiECmMs/maxresdefault.jpg" alt="">Wrap Goblin<span class="project-meta">Game Jam · 48 hours</span><span class="project-role">Developer</span></a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="project-header">
+      <h1>Wrap Goblin</h1>
+      <div class="role">Developer</div>
+      <div class="meta">Game Jam · 48 hours · 3 people</div>
+    </div>
+
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/Ub21xiECmMs" title="Wrap Goblin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+
+    <div class="project-body">
+      <p>Short, comedic dungeon crawler / horror game. Implemented 2D art assets in 3D space using materials in UE5.</p>
+    </div>
+  </div>
+
+</body>
+</html>

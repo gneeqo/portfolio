@@ -4,564 +4,120 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nico Toé</title>
-  <style>
-    :root {
-      --bg: #1d2021;
-      --bg-soft: #282828;
-      --bg-card: #32302f;
-      --bg-card-hover: #3c3836;
-      --fg: #ebdbb2;
-      --fg-dim: #a89984;
-      --fg-muted: #7c6f64;
-      --green: #b8bb26;
-      --aqua: #8ec07c;
-      --yellow: #fabd2f;
-      --orange: #fe8019;
-      --red: #fb4934;
-      --blue: #83a598;
-      --purple: #d3869b;
-      --border: #504945;
-      --border-dim: #3c3836;
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link id="theme-css" rel="stylesheet" href="style.css">
+  <script>
+    const p = new URLSearchParams(location.search).get('style');
+    if (p) {
+      document.getElementById('theme-css').href = 'styles/' + p + '.css';
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('a[href]').forEach(a => {
+          const h = a.getAttribute('href');
+          if (h && h.endsWith('.html') && !h.startsWith('http')) {
+            a.href = h + '?style=' + p;
+          }
+        });
+      });
     }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      background: var(--bg);
-      color: var(--fg);
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 15px;
-      line-height: 1.75;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem;
-    }
-
-    ::selection {
-      background: var(--orange);
-      color: var(--bg);
-    }
-
-    a {
-      color: var(--orange);
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-
-    /* --- HEADER --- */
-    header {
-      padding: 3rem 0 2rem;
-      border-bottom: 1px solid var(--border-dim);
-      margin-bottom: 3rem;
-    }
-
-    .name {
-      font-size: 2rem;
-      font-weight: bold;
-      color: var(--fg);
-      letter-spacing: -0.02em;
-    }
-
-    .tagline {
-      color: var(--fg-dim);
-      margin-top: 0.25rem;
-    }
-
-    .header-links {
-      margin-top: 1rem;
-      color: var(--fg-muted);
-    }
-
-    .header-links a {
-      color: var(--blue);
-    }
-
-    .header-links .sep {
-      color: var(--fg-muted);
-      margin: 0 0.25rem;
-    }
-
-    .intro {
-      margin-top: 1.5rem;
-      color: var(--fg);
-      max-width: 640px;
-    }
-
-    /* --- NAV --- */
-    nav {
-      margin-bottom: 3rem;
-    }
-    nav a {
-      color: var(--fg-dim);
-      margin-right: 1.5rem;
-      font-size: 0.9rem;
-    }
-    nav a:hover {
-      color: var(--orange);
-    }
-
-    /* --- SECTIONS --- */
-    .section-label {
-      color: var(--orange);
-      font-size: 0.85rem;
-      font-weight: bold;
-      margin-bottom: 1.5rem;
-      letter-spacing: 0.05em;
-    }
-
-    section {
-      margin-bottom: 4rem;
-    }
-
-    /* --- PROJECT CARDS --- */
-    .project {
-      border: 1px solid var(--border-dim);
-      background: var(--bg-soft);
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      transition: border-color 0.15s;
-    }
-
-    .project:hover {
-      border-color: var(--border);
-    }
-
-    .project-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .project h3 {
-      font-size: 1.15rem;
-      color: var(--fg);
-    }
-
-    .role {
-      font-size: 0.8rem;
-      color: var(--bg);
-      background: var(--orange);
-      padding: 0.1rem 0.5rem;
-      font-weight: bold;
-    }
-
-    .project-meta {
-      font-size: 0.8rem;
-      color: var(--fg-muted);
-      margin-bottom: 1rem;
-    }
-
-    .project p {
-      color: var(--fg);
-      margin-bottom: 0.75rem;
-    }
-
-    .project strong {
-      color: var(--orange);
-      font-weight: normal;
-    }
-
-    .project em.stat {
-      color: var(--orange);
-      font-style: normal;
-      font-weight: bold;
-    }
-
-    .steam-embed {
-      margin-top: 1.25rem;
-    }
-
-    .steam-embed iframe {
-      border: 0;
-      max-width: 100%;
-      border-radius: 0;
-    }
-
-    .video-box {
-      position: relative;
-      width: 100%;
-      padding-bottom: 56.25%;
-      margin-bottom: 1rem;
-      background: #000;
-    }
-
-    .video-box iframe {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      border: 0;
-    }
-
-    .small-video-box {
-      position: relative;
-      width: 100%;
-      padding-bottom: 56.25%;
-      margin-top: 0.75rem;
-      background: #000;
-    }
-
-    .small-video-box iframe {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      border: 0;
-    }
-
-    /* --- SMALL PROJECTS --- */
-    .small-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    @media (max-width: 600px) {
-      .small-grid { grid-template-columns: 1fr; }
-    }
-
-    .small-project {
-      border: 1px solid var(--border-dim);
-      background: var(--bg-soft);
-      padding: 1.25rem;
-      transition: border-color 0.15s;
-    }
-    .small-project:hover {
-      border-color: var(--border);
-    }
-
-    .small-project h3 {
-      font-size: 1rem;
-      margin-bottom: 0.15rem;
-    }
-
-    .small-project p {
-      color: var(--fg);
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
-    }
-
-    /* --- SKILLS --- */
-    .skills-cols {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem 2rem;
-    }
-
-    @media (max-width: 600px) {
-      .skills-cols { grid-template-columns: 1fr; }
-    }
-
-    .skills-cols h3 {
-      font-size: 0.9rem;
-      color: var(--purple);
-      margin-bottom: 0.4rem;
-    }
-
-    .skills-cols li {
-      list-style: none;
-      color: var(--fg);
-      font-size: 0.9rem;
-      padding: 0.1rem 0;
-    }
-
-    .skills-cols li::before {
-      content: '> ';
-      color: var(--fg-muted);
-    }
-
-    /* --- ABOUT --- */
-    .about p {
-      margin-bottom: 1rem;
-      max-width: 600px;
-    }
-
-    .education {
-      margin-top: 1.5rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border-dim);
-    }
-
-    .education p {
-      margin-bottom: 0.25rem;
-    }
-
-    .degree {
-      color: var(--aqua);
-      font-weight: bold;
-    }
-
-    .school {
-      color: var(--fg-dim);
-      font-size: 0.9rem;
-    }
-
-    /* --- CONTACT --- */
-    .contact-box {
-      border: 1px solid var(--border);
-      padding: 1.5rem;
-      background: var(--bg-soft);
-      margin-top: 1rem;
-    }
-
-    .contact-box p {
-      margin-bottom: 1rem;
-    }
-
-    .contact-links a {
-      display: inline-block;
-      margin-right: 1.25rem;
-      color: var(--blue);
-    }
-
-    /* --- FOOTER --- */
-    footer {
-      margin-top: 4rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border-dim);
-      color: var(--fg-muted);
-      font-size: 0.8rem;
-    }
-
-    /* --- ASCII DIVIDER (just for fun) --- */
-    .divider {
-      color: var(--fg-muted);
-      font-size: 0.8rem;
-      margin: 3rem 0;
-      user-select: none;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-  </style>
+  </script>
 </head>
 <body>
 
-  <header>
-    <div class="name">Nico Toé</div>
-    <div class="header-links">
-      <a href="https://www.linkedin.com/in/nico-toe">linkedin</a>
-      <span class="sep">/</span>
-      <a href="https://github.com/gneeqo">github</a>
-      <span class="sep">/</span>
-      <a href="mailto:nicolastoe@proton.me">email</a>
+  <header class="top-bar">
+    <span class="site-name">Nico Toé</span>
+    <div class="contact-links">
+      <a href="mailto:nicolastoe@proton.me">Email</a>
+      <a href="https://www.linkedin.com/in/nico-toe">LinkedIn</a>
+      <a href="https://github.com/gneeqo">GitHub</a>
     </div>
   </header>
 
-  <nav>
-    <a href="#work">work</a>
-    <a href="#skills">skills</a>
-    <a href="#about">about</a>
-    <a href="#contact">contact</a>
-  </nav>
+  <aside class="sidebar">
+    <div class="sidebar-nav">
+      <a class="project-card-link" href="projects/eidolon.html"><img class="sidebar-thumb" src="https://img.youtube.com/vi/NdUt3TE0nxY/maxresdefault.jpg" alt="">Eidolon: Fate of Fools<span class="project-meta">2024–25 · Arena Shooter · UE5</span><span class="project-role">Designer / Programmer</span></a>
+      <a class="project-card-link" href="projects/knight-light.html"><img class="sidebar-thumb" src="https://img.youtube.com/vi/CKkXO-xdswY/maxresdefault.jpg" alt="">Knight Light<span class="project-meta">2024 · Character Action · UE5</span><span class="project-role">Technical Director</span></a>
+      <a class="project-card-link" href="projects/witch-hazel.html"><img class="sidebar-thumb" src="https://img.youtube.com/vi/SbpCJeAJmgM/maxresdefault.jpg" alt="">Witch Hazel<span class="project-meta">2023 · Gardening Sim · C++</span><span class="project-role">Gameplay Programmer</span></a>
+      <a class="project-card-link" href="projects/strike-back.html"><img class="sidebar-thumb" src="https://img.youtube.com/vi/6cAxIi8MiwE/maxresdefault.jpg" alt="">Strike Back<span class="project-meta">2023 · Fighting Game · C++</span><span class="project-role">Producer / Programmer</span></a>
+      <a class="project-card-link" href="projects/bassacre.html"><img class="sidebar-thumb" src="https://img.youtube.com/vi/_0QxuDoht6I/maxresdefault.jpg" alt="">Bassacre<span class="project-meta">2022 · Twin-Stick Shooter · C</span><span class="project-role">Gameplay Programmer</span></a>
+      <a class="project-card-link" href="projects/wrap-goblin.html"><img class="sidebar-thumb" src="https://img.youtube.com/vi/Ub21xiECmMs/maxresdefault.jpg" alt="">Wrap Goblin<span class="project-meta">Game Jam · 48 hours</span><span class="project-role">Developer</span></a>
+    </div>
+  </aside>
 
-  <!-- ========== WORK ========== -->
-  <section id="work">
-    <div class="section-label">// FEATURED WORK</div>
-
-    <div class="project">
-      <div class="project-top">
-        <h3>Eidolon: Fate of Fools</h3>
-        <span class="role">Designer · Programmer · Live Ops</span>
-      </div>
-      <div class="project-meta">2024–2025 · Arena Shooter · UE5 · 9-person team</div>
-
-      <div class="video-box">
-        <iframe src="https://www.youtube.com/embed/NdUt3TE0nxY?si=ewL2hJ3_8sTJwjnO" title="Eidolon: Fate of Fools" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
-
-      <p>A multiplayer arena shooter designed to emulate the chaotic camaraderie of old-school LAN parties.</p>
-      <p>I prototyped and iterated on core gameplay over a year, tuning combat feel through frequent playtesting. I built a live telemetry pipelinethat captures player data and sends it to PostgreSQL for analysis. I Integrated Steam platform features, including match invites and avatars.</p>
-      <p><em class="stat">94% positive reviews on Steam.</em></p>
-
-      <div class="steam-embed">
-        <iframe src="https://store.steampowered.com/widget/3961630/" width="100%" height="190"></iframe>
+  <div class="main">
+    <div class="hero">
+      <img class="hero-portrait" src="images/portrait.jpg" alt="Nico Toé">
+      <div class="hero-text">
+        <p class="tagline">Game Developer &amp; Gameplay Programmer</p>
+        <p>I'm a game developer and gameplay programmer based in Seattle. I make games with teams, focusing on how players interact with the experience.</p>
+        <p>I thrive on rapid iteration — subtle changes make a huge difference, and a lot of design happens with very simple prototypes.</p>
       </div>
     </div>
 
-    <div class="project">
-      <div class="project-top">
-        <h3>Knight Light</h3>
-        <span class="role">Technical Director</span>
-      </div>
-      <div class="project-meta">2024 · 3D Character Action · UE5 · 21-person team</div>
-
-      <div class="video-box">
-        <iframe src="https://www.youtube.com/embed/CKkXO-xdswY?si=odm7y1JyFQbsoprt" title="Knight Light" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
-
-      <p>A third person character action game with evocative, hand-crafted artwork.</p>
-      <p>As Technical Director I managed 6 programmers, coordinated across art and design teams, and made sure technical decisions served the creative vision. I also built a fluid animation system designed to accommodate the art team's workflow and support fast-paced combat feel.</p>
-
-      <div class="steam-embed">
-        <iframe src="https://store.steampowered.com/widget/3560620/" width="100%" height="190"></iframe>
-      </div>
-    </div>
-
-    <div class="project">
-      <div class="project-top">
-        <h3>Witch Hazel</h3>
-        <span class="role">Gameplay Programmer</span>
-      </div>
-      <div class="project-meta">2023 · Cozy Gardening Sim · Custom C++ Engine</div>
-
-      <div class="video-box">
-        <iframe src="https://www.youtube.com/embed/SbpCJeAJmgM?si=kCkfW2xYIcVoTc-G" title="Witch Hazel" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
-
-      <p>A cozy gardening game about caring for fantastical magical plants.</p>
-      <p>I Joined mid-development and adapted to an existing codebase. I used ImGui to make a level editor so we could easily rearrange props. I also designed particle effects like raindrops, pumpkin explosions, and magical sparkles using Lua for iteration, and then converted to C++ for performance.</p>
-
-      <div class="steam-embed">
-        <iframe src="https://store.steampowered.com/widget/3508840/" width="100%" height="190"></iframe>
-      </div>
-    </div>
-
-    <div class="project">
-      <div class="project-top">
-        <h3>Strike Back</h3>
-        <span class="role">Producer · Programmer</span>
-      </div>
-      <div class="project-meta">2023 · Fighting Game · Custom C++ Engine · 17-person team</div>
-
-      <div class="video-box">
-        <iframe src="https://www.youtube.com/embed/6cAxIi8MiwE?si=uFD3BqmHVYql6Xdy" title="Strike Back" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
-
-      <p>As producer, I recruited and organized a team of 17 sophomores to build a fighting game with a custom engine from scratch. I managed scope and creative direction conflicts across the team.</p>
-      <p>I also wrote an animation system that lets designers specify attack properties at particular frames of animation.</p>
-
-      <div class="steam-embed">
-        <iframe src="https://store.steampowered.com/widget/3627450/" width="100%" height="190"></iframe>
-      </div>
-    </div>
-
-    <div class="divider">──────────────────────────────────────────────────</div>
-
-    <div class="section-label">// OTHER PROJECTS</div>
-
-    <div class="small-grid">
-      <div class="small-project">
-        <h3>Bassacre</h3>
-        <div class="project-meta">2022 · Twin-Stick Shooter · C · 5-person team</div>
-        <p>Nuclear Throne-inspired twin-stick shooter in C. Implemented character controller, combat systems, and collision detection.</p>
-        <div class="small-video-box">
-          <iframe src="https://www.youtube.com/embed/_0QxuDoht6I" title="Bassacre" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <section class="skills-section">
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        <div class="skills-group">
+          <h3 class="skills-label">Languages</h3>
+          <div class="skills-pills">
+            <span class="pill">C++</span>
+            <span class="pill">C</span>
+            <span class="pill">C#</span>
+            <span class="pill">Python</span>
+            <span class="pill">GDScript</span>
+            <span class="pill">GLSL</span>
+            <span class="pill">Lua</span>
+          </div>
+        </div>
+        <div class="skills-group">
+          <h3 class="skills-label">Engines</h3>
+          <div class="skills-pills">
+            <span class="pill">Unreal Engine 5</span>
+            <span class="pill">Godot</span>
+            <span class="pill">Unity</span>
+            <span class="pill">Custom C/C++</span>
+            <span class="pill">GameMaker</span>
+          </div>
+        </div>
+        <div class="skills-group">
+          <h3 class="skills-label">Specializations</h3>
+          <div class="skills-pills">
+            <span class="pill">Gameplay Programming</span>
+            <span class="pill">Animation Systems</span>
+            <span class="pill">Particle &amp; VFX</span>
+            <span class="pill">Multiplayer Networking</span>
+            <span class="pill">Telemetry &amp; Analytics</span>
+            <span class="pill">Tool Development</span>
+            <span class="pill">Social Systems Design</span>
+          </div>
+        </div>
+        <div class="skills-group">
+          <h3 class="skills-label">Infrastructure</h3>
+          <div class="skills-pills">
+            <span class="pill">Steam Platform</span>
+            <span class="pill">PostgreSQL</span>
+            <span class="pill">Linux / Servers</span>
+            <span class="pill">Git</span>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="small-project">
-        <h3>Wrap Goblin</h3>
-        <div class="project-meta">Game Jam · 48 hours · 3 people</div>
-        <p>Short, comedic dungeon crawler / horror game. Implemented 2D art assets in 3D space using materials in UE5.</p>
-        <div class="small-video-box">
-          <iframe src="https://www.youtube.com/embed/Ub21xiECmMs" title="Wrap Goblin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <section class="education-section">
+      <h2>Education</h2>
+      <div class="education-grid">
+        <div class="education-card">
+          <div class="degree">B.S. Computer Science &amp; Game Design</div>
+          <div class="school">DigiPen Institute of Technology</div>
+        </div>
+        <div class="education-card">
+          <div class="degree">A.A. Arts and Sciences</div>
+          <div class="school">Wenatchee Valley College</div>
         </div>
       </div>
-    </div><!-- /.small-grid -->
-  </section><!-- /#work -->
-
-  <!-- ========== SKILLS ========== -->
-  <section id="skills">
-    <div class="section-label">// SKILLS</div>
-
-    <div class="skills-cols">
-      <div>
-        <h3>languages</h3>
-        <ul>
-          <li>C++</li>
-          <li>C</li>
-          <li>C#</li>
-          <li>Python</li>
-          <li>GDScript</li>
-          <li>GLSL</li>
-          <li>Lua</li>
-        </ul>
-      </div>
-      <div>
-        <h3>engines</h3>
-        <ul>
-          <li>Unreal Engine 5</li>
-          <li>Godot</li>
-          <li>Unity</li>
-          <li>Custom C/C++ engines</li>
-          <li>GameMaker</li>
-        </ul>
-      </div>
-      <div>
-        <h3>specializations</h3>
-        <ul>
-          <li>Gameplay programming</li>
-          <li>Animation systems</li>
-          <li>Particle &amp; VFX</li>
-          <li>Multiplayer networking</li>
-          <li>Telemetry &amp; analytics</li>
-          <li>Tool development</li>
-          <li>Social Systems Design </li>
-        </ul>
-      </div>
-      <div>
-        <h3>infrastructure</h3>
-        <ul>
-          <li>Steam platform</li>
-          <li>PostgreSQL</li>
-          <li>Linux / servers</li>
-          <li>Git</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== ABOUT ========== -->
-  <section id="about">
-    <div class="section-label">// ABOUT</div>
-
-    <div class="about">
-      <p>
-        I'm a technical game designer and gameplay programmer based in Seattle.
-        I thrive on rapid iteration — subtle changes make a huge difference,
-        and a lot of design happens with very simple prototypes.
-      </p>
-      <p>
-        Making games solo is satisfying, but the collaborative process is what
-        makes this a passion. Working with a team toward a shared goal is
-        where I do my best work.
-      </p>
-      <p>
-        I play games voraciously; gravitating toward
-        unique indie games with simple, elegant designs. Some of my favorites are UFO 50, Ultrakill, and Mewgenics.
-      </p>
-
-      <div class="education">
-
-        <p><span class="degree">B.S. Computer Science &amp; Game Design</span></p>
-        <p class="school">DigiPen Institute of Technology</p>
-        <br>
-        <p><span class="degree">A.A. Arts and Sciences</span></p>
-        <p class="school">Wenatchee Valley College</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== CONTACT ========== -->
-  <section id="contact">
-    <div class="section-label">// CONTACT</div>
-
-    <div class="contact-box">
-      <p>Looking for opportunities to keep making interesting things.</p>
-      <div class="contact-links">
-        <a href="mailto:nicolastoe@proton.me">email</a>
-        <a href="https://www.linkedin.com/in/nico-toe">linkedin</a>
-        <a href="https://github.com/gneeqo">github</a>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    nico toé · 2026
-  </footer>
+    </section>
+  </div>
 
 </body>
 </html>
