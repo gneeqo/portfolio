@@ -1,4 +1,5 @@
-/* Theme: Black & White — Clean monochrome with grid skills layout */
+/* Theme: Black & White — Hybrid Layout */
+/* About page: 2-column grid with sidebar. Project pages: full-width with bottom nav. */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
@@ -10,16 +11,33 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1.5rem;
-  display: grid;
-  grid-template-columns: 1fr 540px;
-  gap: 2.5rem;
-  grid-template-rows: auto auto auto;
 }
 
 a { color: #1a1a1a; text-decoration: underline; text-underline-offset: 2px; }
 a:hover { color: #555; }
 
-/* --- TOP BAR --- */
+/* ============================================
+   ABOUT PAGE — 2-column grid with sidebar
+   ============================================ */
+body.page-about {
+  display: grid;
+  grid-template-columns: 1fr 540px;
+  gap: 2.5rem;
+  grid-template-rows: auto auto;
+}
+
+/* ============================================
+   PROJECT PAGES — single column, bottom nav
+   ============================================ */
+body.page-project,
+body.page-projects,
+body.page-contact {
+  display: flex;
+  flex-direction: column;
+  max-width: 860px;
+}
+
+/* --- TOP BAR (about page) --- */
 .top-bar {
   grid-column: 1 / -1;
   display: flex;
@@ -32,9 +50,8 @@ a:hover { color: #555; }
 .top-bar .contact-links a { font-size: 0.9rem; font-weight: 700; color: #1a1a1a; text-decoration: none; }
 .top-bar .contact-links a:hover { text-decoration: underline; }
 
-/* --- NAV (project pages) --- */
+/* --- NAV (project pages, contact page) --- */
 nav:not(.sidebar-nav) {
-  grid-column: 1 / -1;
   display: flex;
   align-items: baseline;
   gap: 1.5rem;
@@ -48,36 +65,22 @@ nav .contact-links { display: flex; gap: 1.25rem; }
 nav .contact-links a { font-size: 0.9rem; font-weight: 700; color: #1a1a1a; text-decoration: none; }
 nav .contact-links a:hover { text-decoration: underline; }
 
-/* --- SIDEBAR --- */
-.sidebar { grid-column: 2; grid-row: 2; align-self: start; }
+/* ============================================
+   SIDEBAR — About page: full cards with thumbs
+   ============================================ */
+body.page-about .sidebar {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: start;
+}
 
-.sidebar-nav {
+body.page-about .sidebar-nav {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.5rem;
 }
 
-.project-card-link {
-  display: block;
-  padding: 0.5rem;
-  border-radius: 8px;
-  border: 1.5px solid #ddd;
-  background: #fafafa;
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: #1a1a1a;
-  text-decoration: none;
-  line-height: 1.3;
-  transition: border-color 0.15s;
-}
-
-.project-card-link:hover { border-color: #999; text-decoration: none; }
-.project-card-link.active { border-color: #1a1a1a; background: #f0f0f0; }
-
-.project-meta { display: block; font-size: 0.75rem; font-weight: 400; color: #777; margin-top: 0.15rem; }
-.project-role { display: block; font-size: 0.75rem; color: #555; font-weight: 600; }
-
-.sidebar-thumb {
+body.page-about .sidebar-thumb {
   display: block;
   width: 100%;
   height: auto;
@@ -87,8 +90,103 @@ nav .contact-links a:hover { text-decoration: underline; }
   margin-bottom: 0.3rem;
 }
 
+body.page-about .project-card-link {
+  position: relative;
+  display: block;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1.5px solid #ddd;
+  background: #fafafa;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.3;
+  transition: border-color 0.15s;
+}
+
+body.page-about .project-card-link:hover { border-color: #999; }
+
+/* ============================================
+   SIDEBAR — Project pages: bottom nav strip
+   ============================================ */
+body.page-project .sidebar,
+body.page-projects .sidebar {
+  order: 99;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1.5px solid #ddd;
+}
+
+body.page-project .sidebar-nav,
+body.page-projects .sidebar-nav {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+body.page-project .sidebar-thumb,
+body.page-projects .sidebar-thumb {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 0.3rem;
+}
+
+body.page-project .project-card-link,
+body.page-projects .project-card-link {
+  position: relative;
+  display: block;
+  padding: 0.5rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background: #fafafa;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.3;
+  transition: border-color 0.15s;
+}
+
+body.page-project .project-card-link:hover,
+body.page-projects .project-card-link:hover { border-color: #999; }
+body.page-project .project-card-link.active,
+body.page-projects .project-card-link.active { border-color: #1a1a1a; background: #f0f0f0; }
+
+/* --- Shared card elements --- */
+.card-main { display: block; text-decoration: none; color: inherit; }
+.card-main:hover { text-decoration: none; color: inherit; }
+
+.project-meta { display: block; font-size: 0.75rem; font-weight: 400; color: #777; margin-top: 0.15rem; }
+.project-role { display: block; font-size: 0.75rem; color: #555; font-weight: 600; }
+
+/* --- STEAM ICON — bottom-right, larger --- */
+.steam-link {
+  position: absolute;
+  bottom: 0.4rem;
+  right: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  color: #1b2838;
+  text-decoration: none;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.8);
+  transition: color 0.15s, background 0.15s;
+}
+
+.steam-link:hover { color: #66c0f4; background: #1b2838; text-decoration: none; }
+.steam-icon { width: 18px; height: 18px; }
+
 /* --- MAIN --- */
-.main { grid-column: 1; grid-row: 2; }
+body.page-about .main { grid-column: 1; grid-row: 2; }
+body.page-project .main,
+body.page-projects .main,
+body.page-contact .main { order: 1; }
 
 /* --- HERO --- */
 .hero { display: flex; gap: 2rem; align-items: flex-start; margin-bottom: 2.5rem; }
@@ -107,67 +205,25 @@ section h2 {
   letter-spacing: 0.08em;
 }
 
-/* --- SKILLS — 2-Column Grid Layout --- */
-.skills-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.skills-group {
-  display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 0.75rem;
-  align-items: baseline;
-  padding: 0.4rem 0;
-}
-
-.skills-label {
-  font-size: 0.8rem;
-  font-weight: 800;
-  color: #1a1a1a;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-.skills-pills {
+/* --- TEAM INFO --- */
+.team-info {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.3rem;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
 }
 
-.pill {
+.discipline {
   display: inline-block;
-  padding: 0.15rem 0.55rem;
+  padding: 0.15rem 0.6rem;
   border: 1.5px solid #ccc;
   border-radius: 4px;
   font-size: 0.82rem;
   font-weight: 600;
-  color: #1a1a1a;
-  background: transparent;
-  white-space: nowrap;
+  color: #555;
 }
-
-/* --- EDUCATION — Bordered Cards --- */
-.education-grid {
-  display: flex;
-  gap: 1rem;
-}
-
-.education-card {
-  flex: 1;
-  padding: 0.75rem 1rem;
-  border: 1.5px solid #ddd;
-  border-radius: 8px;
-}
-
-.education-card .degree { font-weight: 700; color: #1a1a1a; font-size: 0.95rem; }
-.education-card .school { color: #777; font-size: 0.85rem; }
 
 /* --- PROJECT DETAIL --- */
-.project-back { display: inline-block; margin-bottom: 1.5rem; font-size: 0.95rem; color: #777; }
-.project-back:hover { color: #1a1a1a; }
-
 .project-header h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.25rem; color: #1a1a1a; }
 .project-header .role { font-size: 1rem; color: #555; font-weight: 600; margin-bottom: 0.25rem; }
 .project-header .meta { font-size: 0.95rem; color: #777; margin-bottom: 1.5rem; }
@@ -192,27 +248,33 @@ section h2 {
 .project-card-meta { font-size: 0.9rem; color: #777; margin-bottom: 0.15rem; }
 .project-card-role { font-size: 0.9rem; color: #555; }
 
-/* --- FOOTER --- */
-footer { grid-column: 1 / -1; margin-top: 1rem; padding-top: 1rem; color: #999; font-size: 0.8rem; }
-footer .copyright { color: #999; }
-footer .contact-links { display: flex; gap: 1.25rem; margin-bottom: 0.5rem; }
+/* --- CONTACT PAGE --- */
+.contact-info { margin-top: 1rem; }
+.contact-info h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 1.5rem; }
+.contact-item { margin-bottom: 1rem; font-size: 1.05rem; }
+.contact-item a { color: #1a1a1a; }
+.contact-label { display: block; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #777; margin-bottom: 0.15rem; }
 
 /* --- RESPONSIVE --- */
 @media (max-width: 700px) {
-  body { grid-template-columns: 1fr; padding: 1rem; gap: 0; }
-  .top-bar { grid-column: 1; margin-bottom: 1rem; }
-  .top-bar .contact-links { justify-content: center; }
-  nav { grid-column: 1; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem; }
-  .sidebar { grid-column: 1; grid-row: auto; position: static; margin-bottom: 2rem; }
-  .sidebar-nav { grid-template-columns: repeat(2, 1fr); gap: 0.4rem; }
-  .sidebar-nav .project-role { display: none; }
-  .sidebar-thumb { display: none; }
-  .main { grid-column: 1; grid-row: auto; }
-  footer { grid-column: 1; }
+  body.page-about { grid-template-columns: 1fr; gap: 0; }
+  body.page-about .top-bar { grid-column: 1; margin-bottom: 1rem; }
+  body.page-about .sidebar { grid-column: 1; grid-row: auto; margin-bottom: 2rem; }
+  body.page-about .sidebar-nav { grid-template-columns: repeat(2, 1fr); gap: 0.4rem; }
+  body.page-about .sidebar-nav .project-role { display: none; }
+  body.page-about .sidebar-thumb { display: none; }
+  body.page-about .main { grid-column: 1; grid-row: auto; }
   .hero { flex-direction: column; align-items: center; text-align: center; }
   .hero-portrait { width: 150px; height: 188px; }
-  .skills-group { grid-template-columns: 1fr; gap: 0.25rem; }
-  .education-grid { flex-direction: column; }
+  nav { flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem; }
+  body.page-project .sidebar-nav,
+  body.page-projects .sidebar-nav { grid-template-columns: repeat(2, 1fr); }
+  body.page-project .sidebar-thumb,
+  body.page-projects .sidebar-thumb { display: none; }
+  body.page-project .project-meta,
+  body.page-project .project-role,
+  body.page-projects .project-meta,
+  body.page-projects .project-role { display: none; }
   .project-card { flex-direction: column; }
   .project-card-thumb { width: 100%; height: auto; aspect-ratio: 16 / 9; }
 }
