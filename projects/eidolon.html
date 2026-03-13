@@ -23,34 +23,26 @@
     }
   </script>
 </head>
-<body>
+<body class="page-project">
 
   <nav>
     <span class="site-name"><a href="../index.html">Nico Toé</a></span>
     <div class="contact-links">
-      <a href="mailto:nicolastoe@proton.me">Email</a>
-      <a href="https://www.linkedin.com/in/nico-toe">LinkedIn</a>
-      <a href="https://github.com/gneeqo">GitHub</a>
       <a href="../index.html">About</a>
     </div>
   </nav>
 
-  <aside class="sidebar">
-    <div class="sidebar-nav">
-      <a class="project-card-link active" href="eidolon.html"><img class="sidebar-thumb" src="https://img.youtube.com/vi/NdUt3TE0nxY/maxresdefault.jpg" alt="">Eidolon: Fate of Fools<span class="project-meta">2024–25 · Arena Shooter · UE5</span><span class="project-role">Designer / Programmer</span></a>
-      <a class="project-card-link" href="knight-light.html"><img class="sidebar-thumb" src="https://img.youtube.com/vi/CKkXO-xdswY/maxresdefault.jpg" alt="">Knight Light<span class="project-meta">2024 · Character Action · UE5</span><span class="project-role">Technical Director</span></a>
-      <a class="project-card-link" href="witch-hazel.html"><img class="sidebar-thumb" src="https://img.youtube.com/vi/SbpCJeAJmgM/maxresdefault.jpg" alt="">Witch Hazel<span class="project-meta">2023 · Gardening Sim · C++</span><span class="project-role">Gameplay Programmer</span></a>
-      <a class="project-card-link" href="strike-back.html"><img class="sidebar-thumb" src="https://img.youtube.com/vi/6cAxIi8MiwE/maxresdefault.jpg" alt="">Strike Back<span class="project-meta">2023 · Fighting Game · C++</span><span class="project-role">Producer / Programmer</span></a>
-      <a class="project-card-link" href="bassacre.html"><img class="sidebar-thumb" src="https://img.youtube.com/vi/_0QxuDoht6I/maxresdefault.jpg" alt="">Bassacre<span class="project-meta">2022 · Twin-Stick Shooter · C</span><span class="project-role">Gameplay Programmer</span></a>
-      <a class="project-card-link" href="wrap-goblin.html"><img class="sidebar-thumb" src="https://img.youtube.com/vi/Ub21xiECmMs/maxresdefault.jpg" alt="">Wrap Goblin<span class="project-meta">Game Jam · 48 hours</span><span class="project-role">Developer</span></a>
-    </div>
-  </aside>
-
   <div class="main">
     <div class="project-header">
       <h1>Eidolon: Fate of Fools</h1>
-      <div class="role">Designer · Programmer · Live Ops</div>
-      <div class="meta">2024–2025 · Arena Shooter · UE5 · 9-person team</div>
+      <div class="role">UX Programmer</div>
+      <div class="meta">2024–2025 · Arena Shooter · UE5 · 8-person team · DigiPen Senior Project</div>
+    </div>
+
+    <div class="team-info">
+      <span class="discipline">1 Designer</span>
+      <span class="discipline">5 Programmers</span>
+      <span class="discipline">2 Artists</span>
     </div>
 
     <div class="video-container">
@@ -58,8 +50,11 @@
     </div>
 
     <div class="project-body">
-      <p>A multiplayer arena shooter designed to emulate the chaotic camaraderie of old-school LAN parties.</p>
-      <p>I prototyped and iterated on core gameplay over a year, tuning combat feel through frequent playtesting. I built a live telemetry pipeline that captures player data and sends it to PostgreSQL for analysis. I integrated Steam platform features, including match invites and avatars.</p>
+      <p>A multiplayer arena shooter designed to emulate the chaotic camaraderie of old-school LAN parties. Players wield 13 tarot-themed weapons across 4 arenas with bot support and Steam multiplayer.</p>
+      <p>We prototyped and iterated on core gameplay over a year, implementing hitscan and projectile weapon systems and tuning combat feel through frequent playtesting. I built VFX for firing, hit markers, death effects, and environmental hazards.</p>
+      <p>I integrated Steam platform features including match invites and avatars.</p>
+      <p>After the project was complete but before shipping, I worked on it for 3 months more on my own as an independent study. I planned to collect player feedback about match quality, make changes to the matchmaking system, and compare player feedback after the changes.</p>
+      <p>The process of building a live telemetry pipeline took up much more time than I expected; I hit multiple dead ends, but ended up shipping with a simple HTTPS POST to a PostgreSQL server. I hope to do more work with the data in the future.</p>
       <p class="stat">94% positive reviews on Steam.</p>
     </div>
 
@@ -67,6 +62,71 @@
       <iframe src="https://store.steampowered.com/widget/3961630/" width="100%" height="190"></iframe>
     </div>
   </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-nav">
+      <div class="project-card-link active">
+        <a class="card-main" href="eidolon.html">
+          <img class="sidebar-thumb" src="https://img.youtube.com/vi/NdUt3TE0nxY/maxresdefault.jpg" alt="">
+          Eidolon: Fate of Fools
+          <span class="project-meta">2024–25 · Arena Shooter · UE5</span>
+          <span class="project-role">UX Programmer</span>
+        </a>
+        <a class="steam-link" href="https://store.steampowered.com/app/3961630/" target="_blank" title="View on Steam">
+          <svg class="steam-icon" viewBox="0 0 496 512" fill="currentColor"><path d="M496 256c0 137-111.2 248-248.4 248-113.8 0-209.6-76.3-239-180.4l95.2 39.3c6.4 32.1 34.9 56.4 68.9 56.4 39.2 0 71.1-32.1 71.1-71.1 0-5.3-.6-10.4-1.7-15.3l86.3-61.6c2.4.1 4.8.2 7.3.2 48.4 0 87.7-39.3 87.7-87.7s-39.3-87.7-87.7-87.7-87.4 39-87.7 87.1l-64 88.3c-8.5-2.6-17.5-4-26.7-4-11 0-21.5 2.1-31.1 5.9L.1 220.4C12.5 97.6 117.8 0 246.4 0 382.8 0 496 110.8 496 248l.5 8z"/></svg>
+        </a>
+      </div>
+      <div class="project-card-link">
+        <a class="card-main" href="knight-light.html">
+          <img class="sidebar-thumb" src="https://img.youtube.com/vi/CKkXO-xdswY/maxresdefault.jpg" alt="">
+          Knight Light
+          <span class="project-meta">2024 · Character Action · UE5</span>
+          <span class="project-role">Technical Director</span>
+        </a>
+        <a class="steam-link" href="https://store.steampowered.com/app/3560620/" target="_blank" title="View on Steam">
+          <svg class="steam-icon" viewBox="0 0 496 512" fill="currentColor"><path d="M496 256c0 137-111.2 248-248.4 248-113.8 0-209.6-76.3-239-180.4l95.2 39.3c6.4 32.1 34.9 56.4 68.9 56.4 39.2 0 71.1-32.1 71.1-71.1 0-5.3-.6-10.4-1.7-15.3l86.3-61.6c2.4.1 4.8.2 7.3.2 48.4 0 87.7-39.3 87.7-87.7s-39.3-87.7-87.7-87.7-87.4 39-87.7 87.1l-64 88.3c-8.5-2.6-17.5-4-26.7-4-11 0-21.5 2.1-31.1 5.9L.1 220.4C12.5 97.6 117.8 0 246.4 0 382.8 0 496 110.8 496 248l.5 8z"/></svg>
+        </a>
+      </div>
+      <div class="project-card-link">
+        <a class="card-main" href="witch-hazel.html">
+          <img class="sidebar-thumb" src="https://img.youtube.com/vi/SbpCJeAJmgM/maxresdefault.jpg" alt="">
+          Witch Hazel
+          <span class="project-meta">2023 · Gardening Sim · C++</span>
+          <span class="project-role">UX Programmer</span>
+        </a>
+        <a class="steam-link" href="https://store.steampowered.com/app/3508840/" target="_blank" title="View on Steam">
+          <svg class="steam-icon" viewBox="0 0 496 512" fill="currentColor"><path d="M496 256c0 137-111.2 248-248.4 248-113.8 0-209.6-76.3-239-180.4l95.2 39.3c6.4 32.1 34.9 56.4 68.9 56.4 39.2 0 71.1-32.1 71.1-71.1 0-5.3-.6-10.4-1.7-15.3l86.3-61.6c2.4.1 4.8.2 7.3.2 48.4 0 87.7-39.3 87.7-87.7s-39.3-87.7-87.7-87.7-87.4 39-87.7 87.1l-64 88.3c-8.5-2.6-17.5-4-26.7-4-11 0-21.5 2.1-31.1 5.9L.1 220.4C12.5 97.6 117.8 0 246.4 0 382.8 0 496 110.8 496 248l.5 8z"/></svg>
+        </a>
+      </div>
+      <div class="project-card-link">
+        <a class="card-main" href="strike-back.html">
+          <img class="sidebar-thumb" src="https://img.youtube.com/vi/6cAxIi8MiwE/maxresdefault.jpg" alt="">
+          Strike Back
+          <span class="project-meta">2023 · Fighting Game · C++</span>
+          <span class="project-role">Producer / Programmer</span>
+        </a>
+        <a class="steam-link" href="https://store.steampowered.com/app/3627450/" target="_blank" title="View on Steam">
+          <svg class="steam-icon" viewBox="0 0 496 512" fill="currentColor"><path d="M496 256c0 137-111.2 248-248.4 248-113.8 0-209.6-76.3-239-180.4l95.2 39.3c6.4 32.1 34.9 56.4 68.9 56.4 39.2 0 71.1-32.1 71.1-71.1 0-5.3-.6-10.4-1.7-15.3l86.3-61.6c2.4.1 4.8.2 7.3.2 48.4 0 87.7-39.3 87.7-87.7s-39.3-87.7-87.7-87.7-87.4 39-87.7 87.1l-64 88.3c-8.5-2.6-17.5-4-26.7-4-11 0-21.5 2.1-31.1 5.9L.1 220.4C12.5 97.6 117.8 0 246.4 0 382.8 0 496 110.8 496 248l.5 8z"/></svg>
+        </a>
+      </div>
+      <div class="project-card-link">
+        <a class="card-main" href="bassacre.html">
+          <img class="sidebar-thumb" src="https://img.youtube.com/vi/_0QxuDoht6I/maxresdefault.jpg" alt="">
+          Bassacre
+          <span class="project-meta">2022 · Twin-Stick Shooter · C</span>
+          <span class="project-role">Programmer</span>
+        </a>
+      </div>
+      <div class="project-card-link">
+        <a class="card-main" href="wrap-goblin.html">
+          <img class="sidebar-thumb" src="https://img.youtube.com/vi/Ub21xiECmMs/maxresdefault.jpg" alt="">
+          Wrap Goblin
+          <span class="project-meta">Game Jam · 48 hours</span>
+          <span class="project-role">Programmer</span>
+        </a>
+      </div>
+    </div>
+  </aside>
 
 </body>
 </html>
