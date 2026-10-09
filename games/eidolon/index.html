@@ -9,6 +9,66 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/css/styles.css" />
+<style>
+/* ---- Eidolon weapons (prototype; move into the theme sheets once the layout settles) ---- */
+.weapons { display: flex; flex-direction: column; gap: 24px; margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--rule-soft); }
+
+/* card rail */
+.card-rail { list-style: none; margin: 0; padding: 6px 0 2px; display: grid; grid-template-columns: repeat(13, minmax(0, 1fr)); gap: 10px; }
+.card-rail li { position: relative; min-width: 0; }
+.card-rail input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.card-rail label { display: block; cursor: pointer; border-radius: 6px; transition: transform .16s ease, filter .16s ease; }
+.card-rail picture, .card-rail img { display: block; width: 100%; height: auto; }
+.card-rail img { border-radius: 6px; filter: saturate(.55) brightness(.75); transition: filter .16s ease, box-shadow .16s ease; }
+.card-rail .card-name { display: block; margin-top: 8px; font-family: var(--font-mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; text-align: center; color: var(--ink-faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.card-rail label:hover img { filter: saturate(1) brightness(1); transform: none; }
+.card-rail label:hover { transform: translateY(-4px); }
+.card-rail input:checked + label { transform: translateY(-6px); }
+.card-rail input:checked + label img { filter: none; box-shadow: 0 0 0 2px var(--card), 0 10px 28px -8px var(--card); }
+.card-rail input:checked + label .card-name { color: var(--ink); }
+.card-rail input:focus-visible + label { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* panel: video left, card pair + blurbs right. The right column's card height is derived from
+   the video height (7/12 of the panel width, 16:9) so the two stacked cards match the player. */
+.weapon-panel { display: none; grid-template-columns: minmax(0, 7fr) minmax(300px, 5fr); gap: 24px; align-items: start; container-type: inline-size; }
+.weapons:has(#w-the-fool:checked) .weapon-panel[data-weapon="the-fool"],
+.weapons:has(#w-the-chariot:checked) .weapon-panel[data-weapon="the-chariot"],
+.weapons:has(#w-strength:checked) .weapon-panel[data-weapon="strength"],
+.weapons:has(#w-the-tower:checked) .weapon-panel[data-weapon="the-tower"],
+.weapons:has(#w-death:checked) .weapon-panel[data-weapon="death"],
+.weapons:has(#w-wheel-of-fortune:checked) .weapon-panel[data-weapon="wheel-of-fortune"],
+.weapons:has(#w-temperance:checked) .weapon-panel[data-weapon="temperance"],
+.weapons:has(#w-the-lovers:checked) .weapon-panel[data-weapon="the-lovers"],
+.weapons:has(#w-the-devil:checked) .weapon-panel[data-weapon="the-devil"],
+.weapons:has(#w-the-magician:checked) .weapon-panel[data-weapon="the-magician"],
+.weapons:has(#w-the-moon:checked) .weapon-panel[data-weapon="the-moon"],
+.weapons:has(#w-the-sun:checked) .weapon-panel[data-weapon="the-sun"],
+.weapons:has(#w-justice:checked) .weapon-panel[data-weapon="justice"] { display: grid; }
+.weapon-panel { --video-h: calc((100cqw - 24px) * 7 / 12 * 9 / 16); --card-h: calc((var(--video-h) - 30px - 24px) / 2); }
+.weapon-media { position: relative; aspect-ratio: 16 / 9; border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; background: var(--bg-deep); }
+.weapon-media video { position: absolute; inset: 0; width: 100%; height: 100%; display: block; background: #000; }
+.weapon-side { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.weapon-side h3 { font-family: var(--font-display); font-weight: 600; font-size: 22px; line-height: 30px; margin: 0; letter-spacing: -0.01em; color: var(--ink); }
+.weapon-side figure { display: flex; gap: 14px; align-items: flex-start; margin: 0; min-width: 0; }
+.weapon-side picture { display: block; flex: 0 0 auto; }
+.weapon-side img { display: block; height: var(--card-h); width: auto; border-radius: 6px; }
+.weapon-side figcaption { min-width: 0; }
+.weapon-side figcaption strong { display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--card); margin-bottom: 6px; }
+.weapon-side figcaption p { margin: 0; font-size: 14px; line-height: 1.5; color: var(--ink-soft); }
+
+@media (max-width: 1100px) {
+  .card-rail { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+  .weapon-panel { grid-template-columns: auto minmax(0, 1fr); }
+  .weapon-panel }
+@media (max-width: 560px) {
+  .weapon-panel { grid-template-columns: 1fr; }
+    .card-rail { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+  .card-rail .card-name { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-rail label, .card-rail img { transition: none; }
+}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -93,9 +153,454 @@
         <div class="media-card steam-widget"><div class="inner"><iframe src="https://store.steampowered.com/widget/3961630/" title="Eidolon on Steam" loading="lazy" frameborder="0"></iframe></div></div>
       </div>
     </div>
+
+
+
+
+
+    <section class="weapons" id="weapons">
+      <ul class="card-rail" aria-label="Weapons">
+      <li style="--card:#e6f0dc">
+        <input type="radio" name="weapon" id="w-the-fool" value="the-fool" checked>
+        <label for="w-the-fool">
+          <picture>
+            <source srcset="/assets/images/eidolon-cards/color/the-fool.webp" type="image/webp">
+            <img src="/assets/images/eidolon-cards/color/the-fool.png" alt="The Fool" width="400" height="640" loading="lazy" decoding="async">
+          </picture>
+          <span class="card-name">The Fool</span>
+        </label>
+      </li>
+      <li style="--card:#22e03a">
+        <input type="radio" name="weapon" id="w-justice" value="justice">
+        <label for="w-justice">
+          <picture>
+            <source srcset="/assets/images/eidolon-cards/color/justice.webp" type="image/webp">
+            <img src="/assets/images/eidolon-cards/color/justice.png" alt="Justice" width="400" height="640" loading="lazy" decoding="async">
+          </picture>
+          <span class="card-name">Justice</span>
+        </label>
+      </li>
+      <li style="--card:#b040f0">
+        <input type="radio" name="weapon" id="w-the-tower" value="the-tower">
+        <label for="w-the-tower">
+          <picture>
+            <source srcset="/assets/images/eidolon-cards/color/the-tower.webp" type="image/webp">
+            <img src="/assets/images/eidolon-cards/color/the-tower.png" alt="The Tower" width="400" height="640" loading="lazy" decoding="async">
+          </picture>
+          <span class="card-name">The Tower</span>
+        </label>
+      </li>
+      <li style="--card:#1a6cff">
+        <input type="radio" name="weapon" id="w-the-chariot" value="the-chariot">
+        <label for="w-the-chariot">
+          <picture>
+            <source srcset="/assets/images/eidolon-cards/color/the-chariot.webp" type="image/webp">
+            <img src="/assets/images/eidolon-cards/color/the-chariot.png" alt="The Chariot" width="400" height="640" loading="lazy" decoding="async">
+          </picture>
+          <span class="card-name">The Chariot</span>
+        </label>
+      </li>
+      <li style="--card:#ff2a2a">
+        <input type="radio" name="weapon" id="w-the-devil" value="the-devil">
+        <label for="w-the-devil">
+          <picture>
+            <source srcset="/assets/images/eidolon-cards/color/the-devil.webp" type="image/webp">
+            <img src="/assets/images/eidolon-cards/color/the-devil.png" alt="The Devil" width="400" height="640" loading="lazy" decoding="async">
+          </picture>
+          <span class="card-name">The Devil</span>
+        </label>
+      </li>
+      <li style="--card:#d04a4a">
+        <input type="radio" name="weapon" id="w-strength" value="strength">
+        <label for="w-strength">
+          <picture>
+            <source srcset="/assets/images/eidolon-cards/color/strength.webp" type="image/webp">
+            <img src="/assets/images/eidolon-cards/color/strength.png" alt="Strength" width="400" height="640" loading="lazy" decoding="async">
+          </picture>
+          <span class="card-name">Strength</span>
+        </label>
+      </li>
+      <li style="--card:#b08cf0">
+        <input type="radio" name="weapon" id="w-temperance" value="temperance">
+        <label for="w-temperance">
+          <picture>
+            <source srcset="/assets/images/eidolon-cards/color/temperance.webp" type="image/webp">
+            <img src="/assets/images/eidolon-cards/color/temperance.png" alt="Temperance" width="400" height="640" loading="lazy" decoding="async">
+          </picture>
+          <span class="card-name">Temperance</span>
+        </label>
+      </li>
+      <li style="--card:#c4a672">
+        <input type="radio" name="weapon" id="w-wheel-of-fortune" value="wheel-of-fortune">
+        <label for="w-wheel-of-fortune">
+          <picture>
+            <source srcset="/assets/images/eidolon-cards/color/wheel-of-fortune.webp" type="image/webp">
+            <img src="/assets/images/eidolon-cards/color/wheel-of-fortune.png" alt="Wheel of Fortune" width="400" height="640" loading="lazy" decoding="async">
+          </picture>
+          <span class="card-name">Wheel of Fortune</span>
+        </label>
+      </li>
+      <li style="--card:#ff3ae1">
+        <input type="radio" name="weapon" id="w-the-lovers" value="the-lovers">
+        <label for="w-the-lovers">
+          <picture>
+            <source srcset="/assets/images/eidolon-cards/color/the-lovers.webp" type="image/webp">
+            <img src="/assets/images/eidolon-cards/color/the-lovers.png" alt="The Lovers" width="400" height="640" loading="lazy" decoding="async">
+          </picture>
+          <span class="card-name">The Lovers</span>
+        </label>
+      </li>
+      <li style="--card:#ecbf01">
+        <input type="radio" name="weapon" id="w-the-magician" value="the-magician">
+        <label for="w-the-magician">
+          <picture>
+            <source srcset="/assets/images/eidolon-cards/color/the-magician.webp" type="image/webp">
+            <img src="/assets/images/eidolon-cards/color/the-magician.png" alt="The Magician" width="400" height="640" loading="lazy" decoding="async">
+          </picture>
+          <span class="card-name">The Magician</span>
+        </label>
+      </li>
+      <li style="--card:#d0d0d8">
+        <input type="radio" name="weapon" id="w-death" value="death">
+        <label for="w-death">
+          <picture>
+            <source srcset="/assets/images/eidolon-cards/color/death.webp" type="image/webp">
+            <img src="/assets/images/eidolon-cards/color/death.png" alt="Death" width="400" height="640" loading="lazy" decoding="async">
+          </picture>
+          <span class="card-name">Death</span>
+        </label>
+      </li>
+      <li style="--card:#ff6a1a">
+        <input type="radio" name="weapon" id="w-the-sun" value="the-sun">
+        <label for="w-the-sun">
+          <picture>
+            <source srcset="/assets/images/eidolon-cards/color/the-sun.webp" type="image/webp">
+            <img src="/assets/images/eidolon-cards/color/the-sun.png" alt="The Sun" width="400" height="640" loading="lazy" decoding="async">
+          </picture>
+          <span class="card-name">The Sun</span>
+        </label>
+      </li>
+      <li style="--card:#50fff9">
+        <input type="radio" name="weapon" id="w-the-moon" value="the-moon">
+        <label for="w-the-moon">
+          <picture>
+            <source srcset="/assets/images/eidolon-cards/color/the-moon.webp" type="image/webp">
+            <img src="/assets/images/eidolon-cards/color/the-moon.png" alt="The Moon" width="400" height="640" loading="lazy" decoding="async">
+          </picture>
+          <span class="card-name">The Moon</span>
+        </label>
+      </li>
+      </ul>
+
+      <section class="weapon-panel" data-weapon="the-fool" style="--card:#e6f0dc" aria-labelledby="h-the-fool">
+        <div class="weapon-media">
+          <video src="/assets/media/eidolon-weapons/01_the-fool.mp4?v=1791577061" poster="/assets/media/eidolon-weapons/posters/01_the-fool.jpg?v=1791577080" controls playsinline preload="metadata"></video>
+        </div>
+        <div class="weapon-side">
+          <h3 id="h-the-fool">The Fool</h3>
+          <figure>
+            <picture>
+              <source srcset="/assets/images/eidolon-cards/color/the-fool.webp" type="image/webp">
+              <img src="/assets/images/eidolon-cards/color/the-fool.png" alt="The Fool, upright" width="400" height="640" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><strong>Upright</strong><p>Swing a dagger that hits enemies at close range. The Fool is always in your opening hand.</p></figcaption>
+          </figure>
+          <figure>
+            <picture>
+              <source srcset="/assets/images/eidolon-cards/color/the-fool-inverted.webp" type="image/webp">
+              <img src="/assets/images/eidolon-cards/color/the-fool-inverted.png" alt="The Fool, inverted" width="400" height="640" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><strong>Inverted</strong><p>Dash through the air on a short cooldown. This ability does not discard The Fool.</p></figcaption>
+          </figure>
+        </div>
+      </section>
+      <section class="weapon-panel" data-weapon="justice" style="--card:#22e03a" aria-labelledby="h-justice">
+        <div class="weapon-media">
+          <video src="/assets/media/eidolon-weapons/13_justice.mp4?v=1791576819" poster="/assets/media/eidolon-weapons/posters/13_justice.jpg?v=1791576819" controls playsinline preload="metadata"></video>
+        </div>
+        <div class="weapon-side">
+          <h3 id="h-justice">Justice</h3>
+          <figure>
+            <picture>
+              <source srcset="/assets/images/eidolon-cards/color/justice.webp" type="image/webp">
+              <img src="/assets/images/eidolon-cards/color/justice.png" alt="Justice, upright" width="400" height="640" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><strong>Upright</strong><p>A simple, reliable assault rifle.</p></figcaption>
+          </figure>
+          <figure>
+            <picture>
+              <source srcset="/assets/images/eidolon-cards/color/justice-inverted.webp" type="image/webp">
+              <img src="/assets/images/eidolon-cards/color/justice-inverted.png" alt="Justice, inverted" width="400" height="640" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><strong>Inverted</strong><p>A molotov cocktail that persists for a few seconds and deals damage over time.</p></figcaption>
+          </figure>
+        </div>
+      </section>
+      <section class="weapon-panel" data-weapon="the-tower" style="--card:#b040f0" aria-labelledby="h-the-tower">
+        <div class="weapon-media">
+          <video src="/assets/media/eidolon-weapons/04_the-tower.mp4?v=1791348018" poster="/assets/media/eidolon-weapons/posters/04_the-tower.jpg?v=1791348392" controls playsinline preload="metadata"></video>
+        </div>
+        <div class="weapon-side">
+          <h3 id="h-the-tower">The Tower</h3>
+          <figure>
+            <picture>
+              <source srcset="/assets/images/eidolon-cards/color/the-tower.webp" type="image/webp">
+              <img src="/assets/images/eidolon-cards/color/the-tower.png" alt="The Tower, upright" width="400" height="640" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><strong>Upright</strong><p>Launch a magic orb that deals high damage and knockback. The Tower can damage and knockback its user.</p></figcaption>
+          </figure>
+          <figure>
+            <picture>
+              <source srcset="/assets/images/eidolon-cards/color/the-tower-inverted.webp" type="image/webp">
+              <img src="/assets/images/eidolon-cards/color/the-tower-inverted.png" alt="The Tower, inverted" width="400" height="640" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><strong>Inverted</strong><p>Crash down onto opponents directly below you.</p></figcaption>
+          </figure>
+        </div>
+      </section>
+      <section class="weapon-panel" data-weapon="the-chariot" style="--card:#1a6cff" aria-labelledby="h-the-chariot">
+        <div class="weapon-media">
+          <video src="/assets/media/eidolon-weapons/02_the-chariot.mp4?v=1791576274" poster="/assets/media/eidolon-weapons/posters/02_the-chariot.jpg?v=1791576442" controls playsinline preload="metadata"></video>
+        </div>
+        <div class="weapon-side">
+          <h3 id="h-the-chariot">The Chariot</h3>
+          <figure>
+            <picture>
+              <source srcset="/assets/images/eidolon-cards/color/the-chariot.webp" type="image/webp">
+              <img src="/assets/images/eidolon-cards/color/the-chariot.png" alt="The Chariot, upright" width="400" height="640" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><strong>Upright</strong><p>Fire a bolt of lightning that hits its target instantly.</p></figcaption>
+          </figure>
+          <figure>
+            <picture>
+              <source srcset="/assets/images/eidolon-cards/color/the-chariot-inverted.webp" type="image/webp">
+              <img src="/assets/images/eidolon-cards/color/the-chariot-inverted.png" alt="The Chariot, inverted" width="400" height="640" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><strong>Inverted</strong><p>The heavens open up to smite an opponent at any range.</p></figcaption>
+          </figure>
+        </div>
+      </section>
+      <section class="weapon-panel" data-weapon="the-devil" style="--card:#ff2a2a" aria-labelledby="h-the-devil">
+        <div class="weapon-media">
+          <video src="/assets/media/eidolon-weapons/09_the-devil.mp4?v=1791576376" poster="/assets/media/eidolon-weapons/posters/09_the-devil.jpg?v=1791576442" controls playsinline preload="metadata"></video>
+        </div>
+        <div class="weapon-side">
+          <h3 id="h-the-devil">The Devil</h3>
+          <figure>
+            <picture>
+              <source srcset="/assets/images/eidolon-cards/color/the-devil.webp" type="image/webp">
+              <img src="/assets/images/eidolon-cards/color/the-devil.png" alt="The Devil, upright" width="400" height="640" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><strong>Upright</strong><p>Unleash a burst of demonic energy at close range.</p></figcaption>
+          </figure>
+          <figure>
+            <picture>
+              <source srcset="/assets/images/eidolon-cards/color/the-devil-inverted.webp" type="image/webp">
+              <img src="/assets/images/eidolon-cards/color/the-devil-inverted.png" alt="The Devil, inverted" width="400" height="640" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><strong>Inverted</strong><p>Corrupt the other cards in your hand, replacing them with The Devil.</p></figcaption>
+          </figure>
+        </div>
+      </section>
+      <section class="weapon-panel" data-weapon="strength" style="--card:#d04a4a" aria-labelledby="h-strength">
+        <div class="weapon-media">
+          <video src="/assets/media/eidolon-weapons/03_strength.mp4?v=1791577080" poster="/assets/media/eidolon-weapons/posters/03_strength.jpg?v=1791577081" controls playsinline preload="metadata"></video>
+        </div>
+        <div class="weapon-side">
+          <h3 id="h-strength">Strength</h3>
+          <figure>
+            <picture>
+              <source srcset="/assets/images/eidolon-cards/color/strength.webp" type="image/webp">
+              <img src="/assets/images/eidolon-cards/color/strength.png" alt="Strength, upright" width="400" height="640" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><strong>Upright</strong><p>Hurl explosive orbs to devastate a large area.</p></figcaption>
+          </figure>
+          <figure>
+            <picture>
+              <source srcset="/assets/images/eidolon-cards/color/strength-inverted.webp" type="image/webp">
+              <img src="/assets/images/eidolon-cards/color/strength-inverted.png" alt="Strength, inverted" width="400" height="640" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><strong>Inverted</strong><p>Leap high into the air.</p></figcaption>
+          </figure>
+        </div>
+      </section>
+      <section class="weapon-panel" data-weapon="temperance" style="--card:#b08cf0" aria-labelledby="h-temperance">
+        <div class="weapon-media">
+          <video src="/assets/media/eidolon-weapons/07_temperance.mp4?v=1791348064" poster="/assets/media/eidolon-weapons/posters/07_temperance.jpg?v=1791348392" controls playsinline preload="metadata"></video>
+        </div>
+        <div class="weapon-side">
+          <h3 id="h-temperance">Temperance</h3>
+          <figure>
+            <picture>
+              <source srcset="/assets/images/eidolon-cards/color/temperance.webp" type="image/webp">
+              <img src="/assets/images/eidolon-cards/color/temperance.png" alt="Temperance, upright" width="400" height="640" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><strong>Upright</strong><p>A heavy machine gun that knocks you back with each shot and increases in fire rate the longer the trigger is held.</p></figcaption>
+          </figure>
+          <figure>
+            <picture>
+              <source srcset="/assets/images/eidolon-cards/color/temperance-inverted.webp" type="image/webp">
+              <img src="/assets/images/eidolon-cards/color/temperance-inverted.png" alt="Temperance, inverted" width="400" height="640" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><strong>Inverted</strong><p>Launch a salvo of caltrops that deal impact damage or linger in the arena until someone walks over them.</p></figcaption>
+          </figure>
+        </div>
+      </section>
+      <section class="weapon-panel" data-weapon="wheel-of-fortune" style="--card:#c4a672" aria-labelledby="h-wheel-of-fortune">
+        <div class="weapon-media">
+          <video src="/assets/media/eidolon-weapons/06_wheel-of-fortune.mp4?v=1791576333" poster="/assets/media/eidolon-weapons/posters/06_wheel-of-fortune.jpg?v=1791576442" controls playsinline preload="metadata"></video>
+        </div>
+        <div class="weapon-side">
+          <h3 id="h-wheel-of-fortune">Wheel of Fortune</h3>
+          <figure>
+            <picture>
+              <source srcset="/assets/images/eidolon-cards/color/wheel-of-fortune.webp" type="image/webp">
+              <img src="/assets/images/eidolon-cards/color/wheel-of-fortune.png" alt="Wheel of Fortune, upright" width="400" height="640" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><strong>Upright</strong><p>Pepper tight hallways with ricocheting dice.</p></figcaption>
+          </figure>
+          <figure>
+            <picture>
+              <source srcset="/assets/images/eidolon-cards/color/wheel-of-fortune-inverted.webp" type="image/webp">
+              <img src="/assets/images/eidolon-cards/color/wheel-of-fortune-inverted.png" alt="Wheel of Fortune, inverted" width="400" height="640" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><strong>Inverted</strong><p>Discard all cards in your hand and draw a full hand of random cards.</p></figcaption>
+          </figure>
+        </div>
+      </section>
+      <section class="weapon-panel" data-weapon="the-lovers" style="--card:#ff3ae1" aria-labelledby="h-the-lovers">
+        <div class="weapon-media">
+          <video src="/assets/media/eidolon-weapons/08_the-lovers.mp4?v=1791348083" poster="/assets/media/eidolon-weapons/posters/08_the-lovers.jpg?v=1791348392" controls playsinline preload="metadata"></video>
+        </div>
+        <div class="weapon-side">
+          <h3 id="h-the-lovers">The Lovers</h3>
+          <figure>
+            <picture>
+              <source srcset="/assets/images/eidolon-cards/color/the-lovers.webp" type="image/webp">
+              <img src="/assets/images/eidolon-cards/color/the-lovers.png" alt="The Lovers, upright" width="400" height="640" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><strong>Upright</strong><p>A medium damage revolver with 7 shots.</p></figcaption>
+          </figure>
+          <figure>
+            <picture>
+              <source srcset="/assets/images/eidolon-cards/color/the-lovers-inverted.webp" type="image/webp">
+              <img src="/assets/images/eidolon-cards/color/the-lovers-inverted.png" alt="The Lovers, inverted" width="400" height="640" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><strong>Inverted</strong><p>Rapidly fire all of The Lovers&#x27; remaining ammunition.</p></figcaption>
+          </figure>
+        </div>
+      </section>
+      <section class="weapon-panel" data-weapon="the-magician" style="--card:#ecbf01" aria-labelledby="h-the-magician">
+        <div class="weapon-media">
+          <video src="/assets/media/eidolon-weapons/10_the-magician.mp4?v=1791576390" poster="/assets/media/eidolon-weapons/posters/10_the-magician.jpg?v=1791576443" controls playsinline preload="metadata"></video>
+        </div>
+        <div class="weapon-side">
+          <h3 id="h-the-magician">The Magician</h3>
+          <figure>
+            <picture>
+              <source srcset="/assets/images/eidolon-cards/color/the-magician.webp" type="image/webp">
+              <img src="/assets/images/eidolon-cards/color/the-magician.png" alt="The Magician, upright" width="400" height="640" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><strong>Upright</strong><p>Throw a fan of 3 razor-sharp cards.</p></figcaption>
+          </figure>
+          <figure>
+            <picture>
+              <source srcset="/assets/images/eidolon-cards/color/the-magician-inverted.webp" type="image/webp">
+              <img src="/assets/images/eidolon-cards/color/the-magician-inverted.png" alt="The Magician, inverted" width="400" height="640" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><strong>Inverted</strong><p>Charge up one card to high speeds. Hitting an enemy with this card grants you another copy of The Magician.</p></figcaption>
+          </figure>
+        </div>
+      </section>
+      <section class="weapon-panel" data-weapon="death" style="--card:#d0d0d8" aria-labelledby="h-death">
+        <div class="weapon-media">
+          <video src="/assets/media/eidolon-weapons/05_death.mp4?v=1791576309" poster="/assets/media/eidolon-weapons/posters/05_death.jpg?v=1791576442" controls playsinline preload="metadata"></video>
+        </div>
+        <div class="weapon-side">
+          <h3 id="h-death">Death</h3>
+          <figure>
+            <picture>
+              <source srcset="/assets/images/eidolon-cards/color/death.webp" type="image/webp">
+              <img src="/assets/images/eidolon-cards/color/death.png" alt="Death, upright" width="400" height="640" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><strong>Upright</strong><p>Release homing spirits to haunt your enemies. For each time you die without getting a kill, you get an additional copy of Death in your opening hand.</p></figcaption>
+          </figure>
+          <figure>
+            <picture>
+              <source srcset="/assets/images/eidolon-cards/color/death-inverted.webp" type="image/webp">
+              <img src="/assets/images/eidolon-cards/color/death-inverted.png" alt="Death, inverted" width="400" height="640" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><strong>Inverted</strong><p>Release a cloud of dark magic that penetrates through terrain. Enemies hit by this have their cards decay, reducing their ammunition to a minimum of 1.</p></figcaption>
+          </figure>
+        </div>
+      </section>
+      <section class="weapon-panel" data-weapon="the-sun" style="--card:#ff6a1a" aria-labelledby="h-the-sun">
+        <div class="weapon-media">
+          <video src="/assets/media/eidolon-weapons/12_the-sun.mp4?v=1791348184" poster="/assets/media/eidolon-weapons/posters/12_the-sun.jpg?v=1791348393" controls playsinline preload="metadata"></video>
+        </div>
+        <div class="weapon-side">
+          <h3 id="h-the-sun">The Sun</h3>
+          <figure>
+            <picture>
+              <source srcset="/assets/images/eidolon-cards/color/the-sun.webp" type="image/webp">
+              <img src="/assets/images/eidolon-cards/color/the-sun.png" alt="The Sun, upright" width="400" height="640" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><strong>Upright</strong><p>Open a portal to the sun to scald your enemies with unbearable heat. The Sun rises after 1/3 of the time in the match has passed.</p></figcaption>
+          </figure>
+          <figure>
+            <picture>
+              <source srcset="/assets/images/eidolon-cards/color/the-sun-inverted.webp" type="image/webp">
+              <img src="/assets/images/eidolon-cards/color/the-sun-inverted.png" alt="The Sun, inverted" width="400" height="640" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><strong>Inverted</strong><p>Annihilate all enemies in a wide area.</p></figcaption>
+          </figure>
+        </div>
+      </section>
+      <section class="weapon-panel" data-weapon="the-moon" style="--card:#50fff9" aria-labelledby="h-the-moon">
+        <div class="weapon-media">
+          <video src="/assets/media/eidolon-weapons/11_the-moon.mp4?v=1791576441" poster="/assets/media/eidolon-weapons/posters/11_the-moon.jpg?v=1791576443" controls playsinline preload="metadata"></video>
+        </div>
+        <div class="weapon-side">
+          <h3 id="h-the-moon">The Moon</h3>
+          <figure>
+            <picture>
+              <source srcset="/assets/images/eidolon-cards/color/the-moon.webp" type="image/webp">
+              <img src="/assets/images/eidolon-cards/color/the-moon.png" alt="The Moon, upright" width="400" height="640" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><strong>Upright</strong><p>Cleave any foes who cross your path. You gain increased movement speed. The Moon waxes after 2/3 of the time in the match has passed.</p></figcaption>
+          </figure>
+          <figure>
+            <picture>
+              <source srcset="/assets/images/eidolon-cards/color/the-moon-inverted.webp" type="image/webp">
+              <img src="/assets/images/eidolon-cards/color/the-moon-inverted.png" alt="The Moon, inverted" width="400" height="640" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><strong>Inverted</strong><p>While The Moon is held inverted, you can see your opponents through walls. Activate the ability to trap one opponent in single combat. The winner of this fight receives a copy of The Moon.</p></figcaption>
+          </figure>
+        </div>
+      </section>
+    </section>
   </main>
 
 
 </div>
+<script>
+// Progressive enhancement only: the radio + CSS :has() handles showing the right panel.
+// This just starts the selected clip and pauses the others so audio never overlaps.
+(function () {
+  var panels = document.querySelectorAll('.weapon-panel');
+  function play(slug) {
+    panels.forEach(function (p) {
+      var v = p.querySelector('video');
+      if (p.dataset.weapon === slug) { v.currentTime = 0; v.play().catch(function () {}); }
+      else if (!v.paused) { v.pause(); }
+    });
+  }
+  document.querySelectorAll('.card-rail input').forEach(function (r) {
+    r.addEventListener('change', function () { if (r.checked) { play(r.value); history.replaceState(null, '', '#' + r.value); } });
+  });
+  var h = location.hash.slice(1), r = h && document.getElementById('w-' + h);
+  if (r) { r.checked = true; }
+})();
+</script>
 </body>
 </html>
