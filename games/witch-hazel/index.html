@@ -17,13 +17,12 @@
   <header class="site-header">
     <div class="identity">
       <a class="brand" href="/" aria-label="Home"></a>
-      <p class="role">UX Programmer &middot; Social Systems Designer</p>
     </div>
 
     <nav class="site-nav" aria-label="Primary">
-      <a href="/">About</a>
-      <a href="/games/" aria-current="page">Games</a>
+      <a href="/" aria-current="page">Work</a>
       <a href="/blog/">Blog</a>
+      <a href="/about/">About</a>
       <a href="/resume/">Resume</a>
     </nav>
 
@@ -65,19 +64,18 @@
 
   <main id="main" tabindex="-1">
     <div class="games-grid games-detail-page">
-      <ul class="games-list" aria-label="Games">
-        <li><a href="/games/eidolon/"><span class="title-text">Eidolon: Fate of Fools</span><span class="role-text">UX Programmer</span></a></li>
-        <li><a href="/games/knight-light/"><span class="title-text">Knight Light</span><span class="role-text">Technical Director</span></a></li>
-        <li class="active"><a href="/games/witch-hazel/" aria-current="page"><span class="title-text">Witch Hazel</span><span class="role-text">UX Programmer</span></a></li>
-        <li><a href="/games/strike-back/"><span class="title-text">Strike Back</span><span class="role-text">Producer / Programmer</span></a></li>
-        <li><a href="/games/bassacre/"><span class="title-text">Bassacre</span><span class="role-text">Programmer</span></a></li>
-        <li><a href="/games/wrap-goblin/"><span class="title-text">Wrap Goblin</span><span class="role-text">Programmer</span></a></li>
+      <ul class="games-list games-list--thumbs" aria-label="Games">
+        <li><a href="/games/eidolon/"><span class="thumb"><img src="/assets/images/capsules/eidolon.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async"></span><span class="text"><span class="title-text">Eidolon: Fate of Fools</span><span class="role-text">UX Programmer</span></span></a></li>
+        <li><a href="/games/knight-light/"><span class="thumb"><img src="/assets/images/capsules/knight-light.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async"></span><span class="text"><span class="title-text">Knight Light</span><span class="role-text">Technical Director</span></span></a></li>
+        <li class="active"><a href="/games/witch-hazel/" aria-current="page"><span class="thumb"><img src="/assets/images/capsules/witch-hazel.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async"></span><span class="text"><span class="title-text">Witch Hazel</span><span class="role-text">UX Programmer</span></span></a></li>
+        <li><a href="/games/strike-back/"><span class="thumb"><img src="/assets/images/capsules/strike-back.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async"></span><span class="text"><span class="title-text">Strike Back</span><span class="role-text">Producer / Programmer</span></span></a></li>
+        <li><a href="/games/bassacre/"><span class="thumb"><img src="/assets/images/capsules/bassacre.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async"></span><span class="text"><span class="title-text">Bassacre</span><span class="role-text">Programmer</span></span></a></li>
+        <li><a href="/games/wrap-goblin/"><span class="thumb"><img src="/assets/images/capsules/wrap-goblin.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async"></span><span class="text"><span class="title-text">Wrap Goblin</span><span class="role-text">Programmer</span></span></a></li>
       </ul>
 
       <article class="game-detail active">
         <div class="year">2023 &middot; Cozy Gardening Sim</div>
         <h2>Witch Hazel</h2>
-        <div class="role-tag-row"><span class="role-tag">UX Programmer</span></div>
         <p class="desc">Witch Hazel is a cozy gardening game, where you care for fantastic magical plants.</p>
         <p>I joined halfway through development, so I had to adapt to an existing codebase and a custom C++ engine.</p>
         <p>Utilizing the ImGui library, I created a system for easily adjusting the position of props in the level. I also programmed particle effects such as raindrops, pumpkin explosions, and all manner of magical sparkles. I used Lua to iterate on the effects quickly, and converted them to C++ for efficiency.</p>

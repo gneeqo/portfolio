@@ -77,41 +77,30 @@ body::before {
 /* ---------- Header ---------- */
 .site-header {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-areas:
-    "identity links"
-    "nav      links";
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas: "identity nav links";
   align-items: center;
   gap: 14px clamp(20px, 3vw, 36px);
-  padding-bottom: 22px;
+  padding-bottom: 18px;
   margin-bottom: 28px;
   border-bottom: 1px solid var(--rule-soft);
 }
 .identity { grid-area: identity; min-width: 0; }
-.site-nav { grid-area: nav; justify-self: start; }
-.header-links { grid-area: links; align-self: end; justify-self: end; }
+.site-nav { grid-area: nav; justify-self: center; }
+.header-links { grid-area: links; justify-self: end; }
 
 .brand {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(40px, 5.5vw, 64px);
+  font-size: 28px;
   line-height: 1.0;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
   color: var(--ink);
   text-decoration: none;
   white-space: nowrap;
   display: inline-block;
 }
 .brand::after { content: var(--brand); }
-
-.role {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--accent);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  margin: 8px 0 0;
-}
 
 .site-nav {
   display: inline-flex;
@@ -168,6 +157,8 @@ body::before {
     grid-template-columns: 1fr;
     grid-template-areas: "identity" "nav" "links";
   }
+  .site-nav { justify-self: start; max-width: 100%; overflow-x: auto; }
+  .site-nav a { white-space: nowrap; }
   .header-links { justify-self: start; }
   .contact-links { justify-content: flex-start; }
 }
@@ -326,6 +317,31 @@ body::before {
 .games-list li.active .title-text { color: var(--ink); }
 .games-list li.active .role-text { color: var(--accent); }
 
+/* Thumbnail rows (the list on every game page). */
+.games-list--thumbs li { padding: 8px 10px 8px 8px; }
+.games-list--thumbs li a { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.games-list--thumbs .thumb {
+  flex: 0 0 96px;
+  aspect-ratio: 16 / 9;
+  border-radius: 5px;
+  overflow: hidden;
+  background: var(--bg-deep);
+}
+.games-list--thumbs .thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(.6) brightness(.8);
+  transition: filter .2s;
+}
+.games-list--thumbs li:hover .thumb img,
+.games-list--thumbs li:focus-within .thumb img,
+.games-list--thumbs li.active .thumb img { filter: none; }
+.games-list--thumbs .text { display: flex; flex-direction: column; min-width: 0; }
+.games-list--thumbs .title-text { font-size: 16px; }
+.games-list--thumbs .role-text { margin-top: 4px; }
+
 /* Detail + media: shown by default (single game pages); the index stacks
    below override this to drive the pure-CSS hover-swap. */
 .game-detail {
@@ -357,28 +373,8 @@ body::before {
   font-size: clamp(30px, 4.2vw, 56px);
   line-height: 1.0;
   letter-spacing: -0.03em;
-  margin: 0 0 14px;
+  margin: 0 0 22px;
   color: var(--ink);
-}
-.game-detail .role-tag-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 22px;
-}
-.game-detail .role-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--accent);
-  color: var(--accent-ink);
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 7px 14px;
-  border-radius: 999px;
 }
 .game-detail .desc {
   font-size: 17px;
@@ -449,41 +445,6 @@ body::before {
   display: block;
 }
 
-/* Pure-CSS hover-swap (games index): the list, detail stack and media stack
-   are in matching document order. Hovering or keyboard-focusing list item N
-   reveals detail/media N. The :nth-child reveal rules outrank the
-   "default first" rules by specificity, so hovering the first item keeps it
-   shown. No JavaScript. */
-.game-detail-stack .game-detail { display: none; }
-.game-media-stack .game-media { display: none; }
-.game-detail-stack .game-detail:first-child { display: block; }
-.game-media-stack .game-media:first-child { display: flex; }
-
-.games-grid:has(.games-list li:is(:hover, :focus-within)) .game-detail-stack .game-detail:first-child,
-.games-grid:has(.games-list li:is(:hover, :focus-within)) .game-media-stack .game-media:first-child { display: none; }
-
-.games-grid:has(.games-list li:nth-child(1):is(:hover, :focus-within)) .game-detail-stack .game-detail:nth-child(1),
-.games-grid:has(.games-list li:nth-child(2):is(:hover, :focus-within)) .game-detail-stack .game-detail:nth-child(2),
-.games-grid:has(.games-list li:nth-child(3):is(:hover, :focus-within)) .game-detail-stack .game-detail:nth-child(3),
-.games-grid:has(.games-list li:nth-child(4):is(:hover, :focus-within)) .game-detail-stack .game-detail:nth-child(4),
-.games-grid:has(.games-list li:nth-child(5):is(:hover, :focus-within)) .game-detail-stack .game-detail:nth-child(5),
-.games-grid:has(.games-list li:nth-child(6):is(:hover, :focus-within)) .game-detail-stack .game-detail:nth-child(6) { display: block; }
-
-.games-grid:has(.games-list li:nth-child(1):is(:hover, :focus-within)) .game-media-stack .game-media:nth-child(1),
-.games-grid:has(.games-list li:nth-child(2):is(:hover, :focus-within)) .game-media-stack .game-media:nth-child(2),
-.games-grid:has(.games-list li:nth-child(3):is(:hover, :focus-within)) .game-media-stack .game-media:nth-child(3),
-.games-grid:has(.games-list li:nth-child(4):is(:hover, :focus-within)) .game-media-stack .game-media:nth-child(4),
-.games-grid:has(.games-list li:nth-child(5):is(:hover, :focus-within)) .game-media-stack .game-media:nth-child(5),
-.games-grid:has(.games-list li:nth-child(6):is(:hover, :focus-within)) .game-media-stack .game-media:nth-child(6) { display: flex; }
-
-/* On the index, the first item reads as active until another is hovered. */
-.games-grid:has(.game-detail-stack):not(:has(.games-list li:is(:hover, :focus-within))) .games-list li:first-child {
-  color: var(--ink);
-  background: var(--bg-2);
-  border-color: var(--rule);
-}
-.games-grid:has(.game-detail-stack):not(:has(.games-list li:is(:hover, :focus-within))) .games-list li:first-child .role-text { color: var(--accent); }
-
 @media (max-width: 1180px) {
   .games-grid { grid-template-columns: minmax(220px, 280px) minmax(0, 1fr); }
   .game-media {
@@ -494,17 +455,13 @@ body::before {
   }
   .game-media .media-card { flex: 1 1 320px; }
   .game-media .media-card.steam-widget { flex: 1 1 100%; height: 190px; }
-  .games-grid:has(.games-list li:nth-child(1):is(:hover, :focus-within)) .game-media-stack .game-media:nth-child(1),
-  .games-grid:has(.games-list li:nth-child(2):is(:hover, :focus-within)) .game-media-stack .game-media:nth-child(2),
-  .games-grid:has(.games-list li:nth-child(3):is(:hover, :focus-within)) .game-media-stack .game-media:nth-child(3),
-  .games-grid:has(.games-list li:nth-child(4):is(:hover, :focus-within)) .game-media-stack .game-media:nth-child(4),
-  .games-grid:has(.games-list li:nth-child(5):is(:hover, :focus-within)) .game-media-stack .game-media:nth-child(5),
-  .games-grid:has(.games-list li:nth-child(6):is(:hover, :focus-within)) .game-media-stack .game-media:nth-child(6),
-  .game-media-stack .game-media:first-child { display: flex; }
 }
 @media (max-width: 720px) {
   .games-grid { grid-template-columns: 1fr; }
   .game-media { flex-direction: column; }
+  /* the 320px flex-basis above is a width in a row; in a column it became a
+     height, and the 16:9 aspect ratio then pushed the cards past the viewport */
+  .game-media .media-card { flex: 0 0 auto; width: 100%; }
 }
 
 /* ---------- Blog ---------- */
@@ -745,4 +702,84 @@ body::before {
   padding: 1px 6px;
   color: var(--ink);
   font-size: 0.9em;
+}
+
+/* ---------- Project wall (landing page) ---------- */
+.wall {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  grid-auto-rows: 280px;
+  grid-auto-flow: dense;
+  gap: 14px;
+}
+.tile { min-width: 0; }
+.tile--wide { grid-column: span 2; }
+.tile--hero { grid-column: span 2; grid-row: span 2; }
+.tile a {
+  position: relative;
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--rule-soft);
+  background: var(--bg-deep);
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color .2s;
+}
+.tile a:hover,
+.tile a:focus-visible { border-color: var(--accent); }
+.tile a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.tile .still,
+.tile .loop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.tile .still { transition: transform .6s cubic-bezier(.2, .7, .2, 1); }
+.tile a:hover .still { transform: scale(1.04); }
+.tile .loop { opacity: 0; transition: opacity .3s; pointer-events: none; }
+.tile.is-playing .loop { opacity: 1; }
+.tile a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(40, 40, 40, .9) 0%, rgba(40, 40, 40, .3) 34%, rgba(40, 40, 40, 0) 58%);
+}
+.tile-title {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 18px;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.tile--wide .tile-title { left: 24px; right: 24px; bottom: 20px; font-size: 32px; line-height: 1; letter-spacing: -0.03em; }
+.tile--hero .tile-title { left: 26px; right: 26px; bottom: 24px; font-size: 42px; line-height: 1; letter-spacing: -0.03em; }
+
+@media (max-width: 760px) {
+  .wall { grid-auto-rows: auto; }
+  .tile--wide,
+  .tile--hero { grid-column: auto; grid-row: auto; }
+  .tile a { height: 190px; }
+  .tile--hero a { height: 250px; }
+  .tile-title,
+  .tile--wide .tile-title { left: 16px; right: 16px; bottom: 14px; font-size: 24px; }
+  .tile--hero .tile-title { left: 16px; right: 16px; bottom: 16px; font-size: 30px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tile .still,
+  .tile .loop { transition: none; }
+  .tile a:hover .still { transform: none; }
 }
