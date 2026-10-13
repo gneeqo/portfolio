@@ -298,15 +298,6 @@ body::before {
   line-height: 1.2;
   letter-spacing: -0.015em;
 }
-.games-list li .role-text {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.1em;
-  color: var(--ink-faint);
-  text-transform: uppercase;
-  margin-top: 5px;
-}
 .games-list li:hover,
 .games-list li:focus-within,
 .games-list li.active {
@@ -315,7 +306,6 @@ body::before {
   border-color: var(--rule);
 }
 .games-list li.active .title-text { color: var(--ink); }
-.games-list li.active .role-text { color: var(--accent); }
 
 /* Thumbnail rows (the list on every game page). */
 .games-list--thumbs li { padding: 8px 10px 8px 8px; }
@@ -340,7 +330,6 @@ body::before {
 .games-list--thumbs li.active .thumb img { filter: none; }
 .games-list--thumbs .text { display: flex; flex-direction: column; min-width: 0; }
 .games-list--thumbs .title-text { font-size: 16px; }
-.games-list--thumbs .role-text { margin-top: 4px; }
 
 /* Detail + media: shown by default (single game pages); the index stacks
    below override this to drive the pure-CSS hover-swap. */
@@ -429,6 +418,12 @@ body::before {
   height: 190px;
   background: var(--bg-deep);
 }
+/* The Steam widget sits in the left column under the thumbnails, so the
+   detail and media columns span both rows beside it. */
+.games-detail-page > .games-list { grid-column: 1; grid-row: 1; }
+.games-detail-page > .steam-widget { grid-column: 1; grid-row: 2; }
+.games-detail-page > .game-detail { grid-column: 2; grid-row: 1 / span 2; }
+.games-detail-page > .game-media { grid-column: 3; grid-row: 1 / span 2; }
 .media-card .inner { position: absolute; inset: 0; }
 .media-card iframe {
   width: 100%;
@@ -454,10 +449,15 @@ body::before {
     margin-top: 8px;
   }
   .game-media .media-card { flex: 1 1 320px; }
-  .game-media .media-card.steam-widget { flex: 1 1 100%; height: 190px; }
+  .games-detail-page > .game-media { grid-column: 1 / -1; grid-row: 3; }
 }
 @media (max-width: 720px) {
   .games-grid { grid-template-columns: 1fr; }
+  .games-detail-page > .games-list,
+  .games-detail-page > .steam-widget,
+  .games-detail-page > .game-detail,
+  .games-detail-page > .game-media { grid-column: 1; grid-row: auto; }
+  .games-detail-page > .steam-widget { order: 1; }
   .game-media { flex-direction: column; }
   /* the 320px flex-basis above is a width in a row; in a column it became a
      height, and the 16:9 aspect ratio then pushed the cards past the viewport */
@@ -710,8 +710,7 @@ body::before {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
-  grid-auto-rows: 280px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-auto-flow: dense;
   gap: 14px;
 }
@@ -721,7 +720,7 @@ body::before {
 .tile a {
   position: relative;
   display: block;
-  height: 100%;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: var(--radius);
   border: 1px solid var(--rule-soft);
@@ -742,44 +741,22 @@ body::before {
   object-fit: cover;
   display: block;
 }
-.tile .still { transition: transform .6s cubic-bezier(.2, .7, .2, 1); }
-.tile a:hover .still { transform: scale(1.04); }
-.tile .loop { opacity: 0; transition: opacity .3s; pointer-events: none; }
+.tile .still,
+.tile .loop { transition: transform .6s cubic-bezier(.2, .7, .2, 1), opacity .3s; }
+/* the loop zooms with the still so the crossfade between them has no jump */
+.tile a:hover .still,
+.tile a:hover .loop { transform: scale(1.04); }
+.tile .loop { opacity: 0; pointer-events: none; }
 .tile.is-playing .loop { opacity: 1; }
-.tile a::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(to top, rgba(40, 40, 40, .9) 0%, rgba(40, 40, 40, .3) 34%, rgba(40, 40, 40, 0) 58%);
-}
-.tile-title {
-  position: absolute;
-  left: 20px;
-  right: 20px;
-  bottom: 18px;
-  z-index: 1;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 26px;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-}
-.tile--wide .tile-title { left: 24px; right: 24px; bottom: 20px; font-size: 32px; line-height: 1; letter-spacing: -0.03em; }
-.tile--hero .tile-title { left: 26px; right: 26px; bottom: 24px; font-size: 42px; line-height: 1; letter-spacing: -0.03em; }
 
 @media (max-width: 760px) {
-  .wall { grid-auto-rows: auto; }
+  .wall { grid-template-columns: 1fr; }
   .tile--wide,
   .tile--hero { grid-column: auto; grid-row: auto; }
-  .tile a { height: 190px; }
-  .tile--hero a { height: 250px; }
-  .tile-title,
-  .tile--wide .tile-title { left: 16px; right: 16px; bottom: 14px; font-size: 24px; }
-  .tile--hero .tile-title { left: 16px; right: 16px; bottom: 16px; font-size: 30px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .tile .still,
   .tile .loop { transition: none; }
-  .tile a:hover .still { transform: none; }
+  .tile a:hover .still,
+  .tile a:hover .loop { transform: none; }
 }

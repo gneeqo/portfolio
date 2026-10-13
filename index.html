@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Nico Toé — Games</title>
-<meta name="description" content="Games by Nico Toé — UX programmer based in Seattle. Eidolon: Fate of Fools, Knight Light, Witch Hazel, Strike Back, Bassacre, Wrap Goblin." />
+<meta name="description" content="Games by Nico Toé — UX programmer based in Seattle. Eidolon: Fate of Fools, Godland, Knight Light, Witch Hazel, Strike Back, Bassacre, Wrap Goblin." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -64,47 +64,50 @@
   </header>
 
   <main id="main" tabindex="-1">
-    <!-- The project wall. Each tile is a plain link: still image, title, and
+    <!-- The project wall. Each tile is a plain link: still image and
          (where a loop exists) a short muted mp4 that wall.js plays on hover /
          focus. Without JS the stills are the whole experience. -->
     <ul class="wall" aria-label="Games">
-      <li class="tile tile--hero">
-        <a href="/games/eidolon/">
-          <img class="still" src="/assets/images/capsules/eidolon.jpg" alt="" width="1280" height="720" decoding="async" />
+      <li class="tile">
+        <a href="/games/eidolon/" aria-label="Eidolon: Fate of Fools">
+          <img class="still" src="/assets/images/covers/eidolon.jpg" alt="" width="616" height="353" decoding="async" />
           <video class="loop" src="/assets/media/previews/eidolon.mp4" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true"></video>
-          <span class="tile-title">Eidolon: Fate of Fools</span>
         </a>
       </li>
-      <li class="tile tile--wide">
-        <a href="/games/knight-light/">
-          <img class="still" src="/assets/images/capsules/knight-light.jpg" alt="" width="1280" height="720" decoding="async" />
+      <li class="tile">
+        <a href="/games/godland/" aria-label="Godland">
+          <img class="still" src="/assets/images/covers/godland.jpg" alt="" width="1280" height="720" decoding="async" />
+          <video class="loop" src="/assets/media/previews/godland-habitat.mp4" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true"></video>
+        </a>
+      </li>
+      <li class="tile">
+        <a href="/games/knight-light/" aria-label="Knight Light">
+          <img class="still" src="/assets/images/covers/knight-light.jpg" alt="" width="616" height="353" decoding="async" />
           <video class="loop" src="/assets/media/previews/knight-light.mp4" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true"></video>
-          <span class="tile-title">Knight Light</span>
         </a>
       </li>
       <li class="tile">
-        <a href="/games/witch-hazel/">
-          <img class="still" src="/assets/images/capsules/witch-hazel.jpg" alt="" width="1280" height="720" decoding="async" />
+        <a href="/games/witch-hazel/" aria-label="Witch Hazel">
+          <img class="still" src="/assets/images/covers/witch-hazel.jpg" alt="" width="616" height="353" decoding="async" />
           <video class="loop" src="/assets/media/previews/witch-hazel.mp4" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true"></video>
-          <span class="tile-title">Witch Hazel</span>
         </a>
       </li>
       <li class="tile">
-        <a href="/games/strike-back/">
-          <img class="still" src="/assets/images/capsules/strike-back.jpg" alt="" width="1280" height="720" decoding="async" />
-          <span class="tile-title">Strike Back</span>
+        <a href="/games/strike-back/" aria-label="Strike Back">
+          <img class="still" src="/assets/images/covers/strike-back.jpg" alt="" width="616" height="353" decoding="async" />
+          <video class="loop" src="/assets/media/previews/strike-back.mp4" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true"></video>
         </a>
       </li>
-      <li class="tile tile--wide">
-        <a href="/games/bassacre/">
-          <img class="still" src="/assets/images/capsules/bassacre.jpg" alt="" width="1280" height="720" decoding="async" style="object-position: center 68%" />
-          <span class="tile-title">Bassacre</span>
+      <li class="tile">
+        <a href="/games/bassacre/" aria-label="Bassacre">
+          <img class="still" src="/assets/images/covers/bassacre.jpg" alt="" width="1280" height="720" decoding="async" />
+          <video class="loop" src="/assets/media/previews/bassacre.mp4" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true"></video>
         </a>
       </li>
-      <li class="tile tile--wide">
-        <a href="/games/wrap-goblin/">
-          <img class="still" src="/assets/images/capsules/wrap-goblin.jpg" alt="" width="1280" height="720" decoding="async" />
-          <span class="tile-title">Wrap Goblin</span>
+      <li class="tile">
+        <a href="/games/wrap-goblin/" aria-label="Wrap Goblin">
+          <img class="still" src="/assets/images/covers/wrap-goblin.jpg" alt="" width="1280" height="720" decoding="async" />
+          <video class="loop" src="/assets/media/previews/wrap-goblin.mp4" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true"></video>
         </a>
       </li>
     </ul>
